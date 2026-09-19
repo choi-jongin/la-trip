@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LA 여행 일정 v7</title>
+<style>
+:root{
+  --bg:#fbf7f2; --surface:#ffffff; --surface-2:#f4ede4;
+  --ink:#241c16; --ink-2:#6b5c4e; --ink-3:#9c8b7a;
+  --line:#e6dbcc; --line-2:#d5c6b2;
+  --accent:#c2410c; --accent-soft:#fde8dc;
+  --sea:#0e7490; --sea-soft:#dff2f6;
+  --warn:#b45309; --warn-bg:#fef3cf; --warn-line:#e9c874;
+  --shadow:0 1px 2px rgba(60,40,20,.06),0 8px 24px rgba(60,40,20,.06);
+  --m1:#c2410c; --m2:#7c3aed; --m3:#0e7490; --m4:#15803d; --m5:#9c8b7a;
+  --map-bg:#f8f2e9; --map-road:#e3d7c5; --map-water:#cfe8ee;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#16120f; --surface:#211b16; --surface-2:#2b231c;
+    --ink:#f2e9df; --ink-2:#b9a894; --ink-3:#8a7a69;
+    --line:#352b23; --line-2:#463930;
+    --accent:#fb923c; --accent-soft:#3a2216;
+    --sea:#67d3e8; --sea-soft:#10333c;
+    --warn:#fbbf24; --warn-bg:#382b12; --warn-line:#6b5220;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+    --m1:#fb923c; --m2:#c4b5fd; --m3:#67d3e8; --m4:#6ee7a0; --m5:#8a7a69;
+    --map-bg:#1d1712; --map-road:#3a2f25; --map-water:#123039;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16120f; --surface:#211b16; --surface-2:#2b231c;
+  --ink:#f2e9df; --ink-2:#b9a894; --ink-3:#8a7a69;
+  --line:#352b23; --line-2:#463930;
+  --accent:#fb923c; --accent-soft:#3a2216;
+  --sea:#67d3e8; --sea-soft:#10333c;
+  --warn:#fbbf24; --warn-bg:#382b12; --warn-line:#6b5220;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+  --m1:#fb923c; --m2:#c4b5fd; --m3:#67d3e8; --m4:#6ee7a0; --m5:#8a7a69;
+  --map-bg:#1d1712; --map-road:#3a2f25; --map-water:#123039;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px 72px}
+header{padding:36px 0 22px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 10px}
+h1{margin:0 0 6px;font-size:clamp(28px,7vw,40px);line-height:1.15;letter-spacing:-.02em;font-weight:800}
+.sub{margin:0;color:var(--ink-2);font-size:15px}
+.flights{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 4px}
+.flight{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow)}
+.flight .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin-bottom:5px}
+.flight .big{font-size:20px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.flight .sm{font-size:12.5px;color:var(--ink-2);margin-top:3px}
+@media(max-width:420px){.flights{grid-template-columns:1fr}}
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
+  margin:22px -16px 0;padding:10px 16px;border-bottom:1px solid var(--line)}
+.navrow{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+.navrow::-webkit-scrollbar{display:none}
+.navrow a{flex:0 0 auto;text-decoration:none;font-size:13px;font-weight:700;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 13px;white-space:nowrap}
+.navrow a:active{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.ovmap{margin:22px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 14px 10px;box-shadow:var(--shadow)}
+.ovmap h3{margin:2px 2px 4px;font-size:15px;font-weight:800;letter-spacing:-.01em}
+.ovmap .hint{margin:0 2px 10px;font-size:12.5px;color:var(--ink-3)}
+.ovmap svg{width:100%;height:auto;display:block;background:var(--map-bg);border-radius:11px}
+.legend{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:10px;padding:0 2px 4px}
+.legend span{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.legend i{width:14px;height:4px;border-radius:2px;display:inline-block}
+section.day{margin-top:34px;scroll-margin-top:64px}
+.dayhead{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;padding-bottom:12px;border-bottom:2px solid var(--ink);margin-bottom:0}
+.daynum{font-size:12px;font-weight:800;letter-spacing:.1em;color:#fff;background:var(--accent);border-radius:6px;padding:4px 9px}
+.daydate{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.daytitle{font-size:14px;color:var(--ink-2);font-weight:600}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:62px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.tl li:last-child{border-bottom:none}
+.t{font-variant-numeric:tabular-nums;font-size:14px;font-weight:800;color:var(--accent);padding-top:1px}
+.what{font-weight:700;font-size:16.5px;letter-spacing:-.01em;margin-bottom:3px}
+.desc{font-size:14.5px;color:var(--ink-2)}
+.desc b{color:var(--ink);font-weight:700}
+.move{display:inline-flex;align-items:center;gap:7px;margin-top:9px;margin-right:7px;background:var(--surface-2);
+  border:1px solid var(--line);border-radius:10px;padding:6px 11px;font-size:13px;color:var(--ink-2);font-weight:600;
+  text-decoration:none;transition:border-color .15s,background .15s}
+.move .ico{font-size:14px;line-height:1}
+.move .cost{color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
+.move.walk{background:transparent;border-style:dashed}
+a.move{cursor:pointer}
+a.move .go{font-size:11.5px;font-weight:800;color:var(--sea);border-left:1px solid var(--line-2);padding-left:8px;margin-left:2px;white-space:nowrap}
+a.move:hover,a.move:focus-visible{border-color:var(--sea);background:var(--sea-soft)}
+a.move:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.note{margin:14px 0 0;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--sea);
+  border-radius:0 12px 12px 0;padding:12px 15px;font-size:14.5px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.warn{margin:16px 0 0;background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--ink)}
+.warn .wt{font-weight:800;color:var(--warn);display:block;margin-bottom:5px;font-size:14px}
+.district{margin:12px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);overflow:hidden}
+.district>button{all:unset;display:block;width:100%;cursor:pointer;padding:14px 16px}
+.district>button:focus-visible{outline:2px solid var(--sea);outline-offset:-2px;border-radius:13px}
+.district .sh{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:800;margin-bottom:9px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:5px 10px}
+.tag.b{background:var(--sea-soft);color:var(--sea)}
+.maphint{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;font-weight:800;color:var(--sea)}
+.maphint .chev{transition:transform .2s;display:inline-block}
+.district.open .maphint .chev{transform:rotate(180deg)}
+.mapwrap{display:none;padding:0 12px 12px;border-top:1px dashed var(--line)}
+.district.open .mapwrap{display:block}
+.mapwrap svg{width:100%;height:auto;display:block;background:var(--map-bg);border-radius:11px;margin-top:12px}
+.mapfoot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.mapfoot .cap{font-size:12.5px;color:var(--ink-3)}
+.gbtn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:800;
+  color:var(--sea);background:var(--sea-soft);border:1px solid var(--sea);border-radius:999px;padding:7px 13px}
+.gbtn:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.mapwrap text,.ovmap text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif}
+.mlabel{font-size:13px;font-weight:700;fill:var(--ink)}
+.mroad{font-size:11px;font-weight:700;fill:var(--ink-3);letter-spacing:.06em}
+.mnum{font-size:11px;font-weight:800;fill:#fff}
+.msmall{font-size:11px;font-weight:600;fill:var(--ink-2)}
+.budget{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.brow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 17px;border-bottom:1px solid var(--line);font-size:15px}
+.brow:last-child{border-bottom:none}
+.brow .bl{color:var(--ink-2);font-weight:600}
+.brow .bv{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.brow.total{background:var(--surface-2);font-size:17px}
+.brow.total .bl{color:var(--ink);font-weight:800}
+.brow.total .bv{color:var(--accent);font-size:19px}
+.brow.alt .bv,.brow.alt .bl{color:var(--ink-3);font-size:14px;font-weight:700}
+.check{list-style:none;margin:16px 0 0;padding:0}
+.check li{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;
+  padding:13px 15px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;box-shadow:var(--shadow)}
+.check input{margin:3px 0 0;width:19px;height:19px;accent-color:var(--accent);flex:0 0 auto}
+.check .ct{font-size:15px;font-weight:600;line-height:1.45}
+.check .cs{display:block;font-size:13px;color:var(--ink-3);font-weight:500;margin-top:2px}
+.check input:checked ~ span .ct{text-decoration:line-through;color:var(--ink-3)}
+h2.sec{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 0;padding-bottom:11px;border-bottom:2px solid var(--ink)}
+.lead{font-size:14.5px;color:var(--ink-2);margin:12px 0 0}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);text-align:center}
+@media print{nav{display:none}body{background:#fff}.wrap{max-width:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Los Angeles · 4박 5일 · v7</p>
+  <h1>LA 여행 일정</h1>
+  <p class="sub">2026년 9월 22일(화) — 9월 26일(토) · 숙소 The LINE Hotel, Koreatown (3515 Wilshire Blvd)</p>
+  <div class="flights">
+    <div class="flight">
+      <div class="lbl">도착 · 9/22 화</div>
+      <div class="big">08:20</div>
+      <div class="sm">LAX 터미널 B (TBIT)</div>
+    </div>
+    <div class="flight">
+      <div class="lbl">출발 · 9/26 토</div>
+      <div class="big">10:50</div>
+      <div class="sm">LAX 터미널 B (TBIT)</div>
+    </div>
+  </div>
+</header>
+
+<nav><div class="navrow">
+  <a href="#d1">Day 1 · 빅버스</a>
+  <a href="#d2">Day 2 · 유니버설+그리피스</a>
+  <a href="#d3">Day 3 · 슈프림 드랍</a>
+  <a href="#d4">Day 4 · 게티+해변</a>
+  <a href="#d5">Day 5 · 출국</a>
+  <a href="#budget">비용</a>
+  <a href="#check">체크리스트</a>
+</div></nav>
+
+<!-- OVERVIEW SKETCH MAP -->
+<div class="ovmap">
+  <h3>전체 동선 약도</h3>
+  <p class="hint">축척 없는 개념도입니다. 별(★)이 숙소, 선 색이 날짜입니다. 아래 일정의 🚗 칩을 누르면 해당 구간이 입력된 구글 지도가 열립니다.</p>
+  <svg viewBox="0 0 700 540" role="img" aria-label="LA 전체 동선 개념도">
+    <path d="M0,540 L0,300 Q60,270 95,300 Q120,330 120,370 Q125,430 170,470 Q210,500 210,540 Z" fill="var(--map-water)"/>
+    <text x="34" y="470" class="mroad" transform="rotate(-64 34 470)">PACIFIC OCEAN</text>
+    <!-- D1: hotel -> hollywood -> beverly -> grove -> hotel -->
+    <path d="M430,330 C420,270 400,225 382,196 M382,196 C345,215 300,245 268,262 M268,262 C290,268 320,272 338,274 M338,274 C370,292 405,315 430,330" fill="none" stroke="var(--m1)" stroke-width="4" stroke-linecap="round"/>
+    <!-- D2: hotel -> universal -> griffith -> hotel -->
+    <path d="M430,330 C415,250 400,170 388,112 M388,112 C420,128 455,148 478,164 M478,164 C468,225 448,290 432,326" fill="none" stroke="var(--m2)" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 9"/>
+    <!-- D3: hotel <-> fairfax/melrose -->
+    <path d="M430,330 C400,315 365,295 340,278" fill="none" stroke="var(--m3)" stroke-width="4" stroke-linecap="round" stroke-dasharray="12 7"/>
+    <!-- D4: hotel -> getty -> SM -> venice -> hotel -->
+    <path d="M430,330 C420,265 406,195 394,152 M394,152 C315,162 222,186 166,206 M166,206 C170,258 176,314 182,360 M182,360 C172,346 162,330 154,320 M154,320 C245,330 340,332 430,332" fill="none" stroke="var(--m4)" stroke-width="4" stroke-linecap="round"/>
+    <!-- D5: hotel -> LAX -->
+    <path d="M430,330 C360,370 290,405 235,428" fill="none" stroke="var(--m5)" stroke-width="4" stroke-linecap="round" stroke-dasharray="3 7"/>
+    <g>
+      <circle cx="388" cy="106" r="7" fill="var(--m2)"/><text x="400" y="102" class="mlabel">유니버설 스튜디오</text>
+      <circle cx="480" cy="166" r="7" fill="var(--m2)"/><text x="492" y="162" class="mlabel">그리피스 천문대</text>
+      <text x="492" y="178" class="msmall">일몰 · 할리우드 사인 뷰</text>
+      <circle cx="382" cy="192" r="7" fill="var(--m1)"/><text x="290" y="180" class="mlabel">할리우드</text>
+      <circle cx="268" cy="262" r="7" fill="var(--m1)"/><text x="180" y="252" class="mlabel">베벌리힐스</text>
+      <circle cx="338" cy="274" r="7" fill="var(--m3)"/><text x="322" y="300" class="mlabel">페어팩스 · 그로브</text>
+      <text x="322" y="316" class="msmall">+ 어반 라이트 · 타르 피츠 (Day 1)</text>
+      <circle cx="160" cy="206" r="7" fill="var(--m4)"/><text x="176" y="202" class="mlabel">더 게티</text>
+      <circle cx="394" cy="150" r="7" fill="var(--m4)"/><text x="406" y="146" class="mlabel">레이크 할리우드 파크</text>
+      <text x="406" y="161" class="msmall">사인 근접 포토</text>
+      <circle cx="152" cy="314" r="7" fill="var(--m4)"/><text x="140" y="296" class="mlabel" text-anchor="end">산타모니카</text>
+      <circle cx="182" cy="366" r="7" fill="var(--m4)"/><text x="196" y="376" class="mlabel">베니스</text>
+      <circle cx="235" cy="430" r="7" fill="var(--m5)"/><text x="252" y="436" class="mlabel">LAX</text>
+      <text x="447" y="322" class="mlabel" font-size="17">★</text>
+      <text x="468" y="336" class="mlabel">숙소 · 코리아타운</text>
+    </g>
+  </svg>
+  <div class="legend">
+    <span><i style="background:var(--m1)"></i>Day 1 할리우드·빅버스</span>
+    <span><i style="background:var(--m2)"></i>Day 2 유니버설+그리피스</span>
+    <span><i style="background:var(--m3)"></i>Day 3 페어팩스</span>
+    <span><i style="background:var(--m4)"></i>Day 4 게티+해변</span>
+    <span><i style="background:var(--m5)"></i>Day 5 공항</span>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<section class="day" id="d1">
+  <div class="dayhead">
+    <span class="daynum">DAY 1</span>
+    <span class="daydate">9/22 화</span>
+    <span class="daytitle">도착 · 할리우드 · 빅버스 (로데오 → 어반 라이트 → 그로브)</span>
+  </div>
+  <p class="lead">시차로 가장 피곤한 날이라 <b>앉아서 도는 빅버스</b>를 첫날에 배치했습니다. 걷는 양이 가장 적은 날입니다.</p>
+  <ul class="tl">
+    <li><div class="t">08:20</div><div>
+      <div class="what">LAX 터미널 B 도착</div>
+      <div class="desc">입국심사·수하물까지 <b>1~1.5시간</b> 잡으세요. 아침 국제선 도착이 몰리는 시간대입니다.</div>
+    </div></li>
+    <li><div class="t">10:30</div><div>
+      <div class="what">The LINE 호텔 · 짐 보관</div>
+      <div class="desc">체크인은 15시부터. 프런트에 짐 맡기고 바로 나갑니다.</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=LAX+Tom+Bradley+International+Terminal&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 30~40분 · <span class="cost">$45~60</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">11:30</div><div>
+      <div class="what">할리우드 이동</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=TCL+Chinese+Theatre&amp;travelmode=driving"><span class="ico">🚗</span>우버 20분 · <span class="cost">$16~24</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">12:00</div><div>
+      <div class="what">명예의 거리 · TCL 차이니즈 · 점심</div>
+      <div class="desc">기대치는 낮게 — 실제로는 번화가 거리입니다. Ovation Hollywood 안에서 간단히 점심을 해결하면 동선이 깔끔합니다.</div>
+      <div class="move walk"><span class="ico">🚶</span>도보</div>
+      <div class="district" id="dist-hollywood">
+        <button type="button" aria-expanded="false" aria-controls="map-hollywood">
+          <div class="sh">Hollywood Blvd 도보 코스</div>
+          <div class="tags">
+            <span class="tag">돌비 극장</span><span class="tag">TCL 차이니즈</span><span class="tag">명예의 거리 스타</span><span class="tag b">Ovation 옥상 — 할리우드 사인 뷰</span>
+          </div>
+          <div class="maphint"><span class="chev">▾</span>카드를 누르면 도보 라인 약도가 열립니다</div>
+        </button>
+        <div class="mapwrap" id="map-hollywood">
+          <svg viewBox="0 0 640 300" role="img" aria-label="할리우드 대로 도보 코스 약도">
+            <line x1="25" y1="150" x2="615" y2="150" stroke="var(--map-road)" stroke-width="16"/>
+            <line x1="150" y1="30" x2="150" y2="275" stroke="var(--map-road)" stroke-width="12"/>
+            <line x1="520" y1="30" x2="520" y2="275" stroke="var(--map-road)" stroke-width="12"/>
+            <text x="300" y="138" class="mroad">HOLLYWOOD BLVD</text>
+            <text x="161" y="262" class="mroad" transform="rotate(-90 161 262)">HIGHLAND</text>
+            <text x="531" y="248" class="mroad" transform="rotate(-90 531 248)">VINE</text>
+            <path d="M95,150 L470,150" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 10"/>
+            <g>
+              <circle cx="95" cy="150" r="11" fill="var(--accent)"/><text x="90" y="154" class="mnum">1</text>
+              <text x="52" y="120" class="mlabel">돌비 극장</text>
+              <circle cx="185" cy="150" r="11" fill="var(--accent)"/><text x="180" y="154" class="mnum">2</text>
+              <text x="140" y="192" class="mlabel">TCL 차이니즈</text>
+              <text x="140" y="209" class="msmall">핸드프린트 광장</text>
+              <circle cx="255" cy="150" r="11" fill="var(--accent)"/><text x="250" y="154" class="mnum">3</text>
+              <text x="216" y="120" class="mlabel">Ovation 옥상 전망대</text>
+              <text x="216" y="103" class="msmall">무료 · 할리우드 사인 근접 뷰</text>
+              <circle cx="470" cy="150" r="11" fill="var(--accent)"/><text x="465" y="154" class="mnum">4</text>
+              <text x="400" y="192" class="mlabel">명예의 거리 스타 산책</text>
+              <text x="400" y="209" class="msmall">빅버스 승차장 방향</text>
+            </g>
+          </svg>
+          <div class="mapfoot">
+            <span class="cap">편도 약 1km · 점심 포함 1시간 반</span>
+            <a class="gbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Dolby+Theatre&amp;destination=Hollywood+Blvd+%26+Vine+St%2C+Los+Angeles&amp;waypoints=TCL+Chinese+Theatre%7COvation+Hollywood&amp;travelmode=walking">구글 지도로 이 코스 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="t">13:30</div><div>
+      <div class="what">빅버스 승차 → 선셋 스트립 경유</div>
+      <div class="desc">2층 오픈탑에 앉아서 도는 구성이라 시차 피로에 최적입니다. 2번 정류장(TCL 차이니즈 앞)에서 탑니다.</div>
+      <div class="move"><span class="ico">🚌</span>1일권 · <span class="cost">$55~75/인</span></div>
+      <div class="district" id="dist-bigbus">
+        <button type="button" aria-expanded="false" aria-controls="map-bigbus">
+          <div class="sh">빅버스 레드 루트 — 할리우드 순환선</div>
+          <div class="tags">
+            <span class="tag">12개 정차지</span><span class="tag">배차 30~45분</span><span class="tag">첫차 10:00</span><span class="tag b">내리는 곳 3곳 강조</span>
+          </div>
+          <div class="maphint"><span class="chev">▾</span>카드를 누르면 전체 노선 약도가 열립니다</div>
+        </button>
+        <div class="mapwrap" id="map-bigbus">
+          <svg viewBox="0 0 640 470" role="img" aria-label="빅버스 레드 루트 전체 노선 약도">
+            <path d="M340,78 L235,78 Q160,78 140,115 Q112,160 106,215 Q98,255 95,290 Q120,320 210,332 Q290,346 330,347 Q380,335 393,302 Q415,255 422,215 Q455,190 498,182 Q490,120 478,95 Q420,78 340,78 Z"
+              fill="none" stroke="var(--m1)" stroke-width="5" stroke-linecap="round" opacity=".85"/>
+            <path d="M334,340 Q365,322 388,306" fill="none" stroke="var(--sea)" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/>
+            <g fill="var(--ink-3)">
+              <circle cx="340" cy="78" r="7"/><circle cx="150" cy="112" r="7"/><circle cx="110" cy="162" r="7"/>
+              <circle cx="105" cy="215" r="7"/><circle cx="215" cy="330" r="7"/><circle cx="420" cy="215" r="7"/>
+              <circle cx="498" cy="182" r="7"/><circle cx="478" cy="93" r="7"/>
+            </g>
+            <text x="352" y="70" class="msmall">1 비지터센터</text>
+            <text x="128" y="98" class="msmall">3 기타 센터</text>
+            <text x="60" y="152" class="msmall">4 코미디 스토어</text>
+            <text x="38" y="228" class="msmall">5 웨스트 할리우드</text>
+            <text x="188" y="316" class="msmall">7 베벌리 센터</text>
+            <text x="432" y="222" class="msmall">10 멜로즈</text>
+            <text x="510" y="188" class="msmall">11 파라마운트</text>
+            <text x="488" y="84" class="msmall">12 할리우드 & 바인</text>
+            <text x="150" y="58" class="mroad">HOLLYWOOD BLVD</text>
+            <text x="52" y="285" class="mroad" transform="rotate(-72 52 285)">SUNSET STRIP</text>
+            <g>
+              <circle cx="235" cy="78" r="12" fill="var(--accent)"/><text x="230" y="82" class="mnum">2</text>
+              <text x="196" y="108" class="mlabel">TCL — 승차</text>
+              <circle cx="95" cy="290" r="12" fill="var(--accent)"/><text x="90" y="294" class="mnum">6</text>
+              <text x="112" y="282" class="mlabel">베벌리 가든스 — 로데오 하차</text>
+              <circle cx="330" cy="347" r="12" fill="var(--accent)"/><text x="325" y="351" class="mnum">8</text>
+              <text x="240" y="380" class="mlabel">LACMA — 어반 라이트 하차</text>
+              <circle cx="393" cy="302" r="12" fill="var(--accent)"/><text x="388" y="306" class="mnum">9</text>
+              <text x="408" y="300" class="mlabel">그로브</text>
+              <text x="408" y="317" class="msmall">8번에서 도보 12~15분</text>
+            </g>
+            <path d="M186,71 l-16,7 l16,7 Z" fill="var(--m1)"/>
+            <text x="30" y="446" class="msmall">진한 점 = 이날 타고 내리는 곳 · 회색 점 = 통과(2층에서 구경) · 점선 = 도보</text>
+          </svg>
+          <div class="mapfoot">
+            <span class="cap">한 바퀴 약 2시간 · 순환 노선</span>
+            <a class="gbtn" target="_blank" rel="noopener" href="https://www.bigbustours.com/en/los-angeles/los-angeles-routes-and-tour-maps">공식 노선도·시간표 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="t">14:15</div><div>
+      <div class="what">로데오 드라이브 하차 · 베벌리힐스 산책</div>
+      <div class="move"><span class="ico">🚌</span>빅버스 · <span class="cost">포함</span></div>
+      <div class="district" id="dist-rodeo">
+        <button type="button" aria-expanded="false" aria-controls="map-rodeo">
+          <div class="sh">베벌리힐스 도보 코스</div>
+          <div class="tags">
+            <span class="tag">베벌리힐스 사인</span><span class="tag">로데오 드라이브</span><span class="tag">투 로데오</span><span class="tag b">귀여운 여인 호텔</span>
+          </div>
+          <div class="maphint"><span class="chev">▾</span>카드를 누르면 도보 라인 약도가 열립니다</div>
+        </button>
+        <div class="mapwrap" id="map-rodeo">
+          <svg viewBox="0 0 640 310" role="img" aria-label="로데오 드라이브 도보 코스 약도">
+            <line x1="30" y1="70" x2="615" y2="70" stroke="var(--map-road)" stroke-width="14"/>
+            <line x1="30" y1="245" x2="615" y2="245" stroke="var(--map-road)" stroke-width="14"/>
+            <line x1="310" y1="35" x2="310" y2="280" stroke="var(--map-road)" stroke-width="14"/>
+            <text x="60" y="60" class="mroad">SANTA MONICA BLVD</text>
+            <text x="60" y="272" class="mroad">WILSHIRE BLVD</text>
+            <text x="322" y="180" class="mroad" transform="rotate(-90 322 180)">RODEO DR</text>
+            <path d="M270,70 L310,70 L310,245" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 10"/>
+            <g>
+              <circle cx="270" cy="70" r="11" fill="var(--accent)"/><text x="265" y="74" class="mnum">1</text>
+              <text x="120" y="105" class="mlabel">베벌리 가든스 파크 (하차)</text>
+              <text x="120" y="122" class="msmall">Beverly Hills 사인 앞 인증샷</text>
+              <circle cx="310" cy="155" r="11" fill="var(--accent)"/><text x="305" y="159" class="mnum">2</text>
+              <text x="330" y="150" class="mlabel">로데오 드라이브 3블록 남하</text>
+              <text x="330" y="167" class="msmall">명품 플래그십 거리 · 점심</text>
+              <circle cx="310" cy="245" r="11" fill="var(--accent)"/><text x="305" y="249" class="mnum">3</text>
+              <text x="342" y="222" class="mlabel">투 로데오 (Via Rodeo)</text>
+              <text x="342" y="239" class="msmall">유럽풍 골목 포토스팟</text>
+              <text x="342" y="292" class="msmall">길 건너 = 『귀여운 여인』의 Beverly Wilshire 호텔</text>
+            </g>
+          </svg>
+          <div class="mapfoot">
+            <span class="cap">편도 약 700m · 점심 포함 1시간 15분</span>
+            <a class="gbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Beverly+Gardens+Park&amp;destination=Two+Rodeo%2C+Beverly+Hills&amp;waypoints=Rodeo+Drive%2C+Beverly+Hills&amp;travelmode=walking">구글 지도로 이 코스 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="t">15:15</div><div>
+      <div class="what">빅버스 8번 정류장 하차 — 어반 라이트 + 라 브레아 타르 피츠</div>
+      <div class="desc">LACMA 앞 <b>가로등 202개 조형물</b> — LA 인증샷 1순위, 야외 무료. 바로 옆 <b>타르 피츠 공원</b>에서 아직도 부글거리는 천연 타르 늪 구경 (박물관 내부는 화요일 휴관이지만 야외 공원은 상시 개방). 30~40분이면 충분합니다.</div>
+      <div class="move"><span class="ico">🚌</span>빅버스 · <span class="cost">포함</span></div>
+    </div></li>
+    <li><div class="t">16:10</div><div>
+      <div class="what">더 그로브로 도보 이동</div>
+      <div class="desc">버스를 기다릴 필요 없이 걸어가는 게 빠릅니다.</div>
+      <a class="move walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Urban+Light+LACMA&amp;destination=The+Grove%2C+Los+Angeles&amp;travelmode=walking"><span class="ico">🚶</span>도보 12~15분<span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">16:25</div><div>
+      <div class="what">더 그로브 + 오리지널 파머스 마켓</div>
+      <div class="desc">파머스 마켓에서 간식. 저녁은 Park's BBQ가 있으니 가볍게.</div>
+    </div></li>
+    <li><div class="t">17:30</div><div>
+      <div class="what">호텔 복귀 · 체크인 · 휴식</div>
+      <div class="desc">그로브에서 코리아타운은 가깝습니다.</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+Grove%2C+Los+Angeles&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 15분 · <span class="cost">$12~18</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">19:30</div><div>
+      <div class="what">코리아타운 저녁 — Park's BBQ</div>
+      <div class="desc">갈비의 기준점. <b>예약 필수</b>입니다. 대안: Sun Nong Dan(갈비찜, 24시간).</div>
+      <a class="move walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Park%27s+BBQ%2C+955+S+Vermont+Ave%2C+Los+Angeles&amp;travelmode=walking"><span class="ico">🚶</span>호텔 도보권<span class="go">경로 ↗</span></a>
+    </div></li>
+  </ul>
+  <div class="note"><b>비행이 지연되면</b> 할리우드 도보(12:00)를 건너뛰고 바로 빅버스에 타세요. 그래도 빠듯하면 어반 라이트 하차를 생략하면 됩니다 — 빅버스가 8번 정류장을 지나가며 2층에서도 보입니다. 참고로 어반 라이트는 <b>해 진 후 불 켜진 모습이 더 유명</b>하니, 낮 사진이 아쉬우면 Day 3 쇼핑 후 저녁에 우버로 잠깐(+$10~15) 다시 올 수도 있습니다. <b>밤 10시까지 버티면</b> 시차 적응이 훨씬 빨라집니다.</div>
+</section>
+
+<!-- DAY 2 -->
+<section class="day" id="d2">
+  <div class="dayhead">
+    <span class="daynum">DAY 2</span>
+    <span class="daydate">9/23 수</span>
+    <span class="daytitle">유니버설 (9~17시) · 그리피스 일몰</span>
+  </div>
+  <div class="warn">
+    <span class="wt">⚠ 9/23은 핼러윈 호러 나이츠(HHN) 개최일로 확인됨</span>
+    2026년 HHN 캘린더 확인 결과 <b>여행 기간 중 수~토 전일 개최</b>입니다. 피할 수 없으니 전제로 짰습니다:
+    주간 입장객은 <b>오후 5시경 퇴장</b>(이벤트 얼리 액세스 17:30, 본행사 19:00 시작).
+    아침 개장 입장 기준 <b>8시간 확보</b>로 충분히 소화 가능합니다. 티켓은 주간권만 구매하면 됩니다.
+  </div>
+  <ul class="tl">
+    <li><div class="t">08:15</div><div>
+      <div class="what">유니버설 이동</div>
+      <div class="desc">대안: 메트로 B선 → Universal City역 (1인 $1.75) — 아침 시간대는 안전합니다.</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Universal+Studios+Hollywood&amp;travelmode=driving"><span class="ico">🚗</span>우버 25~35분 · <span class="cost">$22~32</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Universal+Studios+Hollywood&amp;travelmode=transit"><span class="ico">🚇</span>메트로 B선 · <span class="cost">$1.75/인</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">09:00</div><div>
+      <div class="what">개장 맞춰 입장</div>
+      <div class="desc">티켓은 <b>9/23 날짜 지정 온라인 구매</b>가 현장보다 쌉니다.</div>
+      <div class="move"><span class="ico">🎟</span>입장권 · <span class="cost">$110~150/인</span></div>
+    </div></li>
+    <li><div class="t">09:15</div><div>
+      <div class="what">스튜디오 투어 — 무조건 1순위</div>
+      <div class="desc">HHN 날은 오후에 <b>테러 트램으로 전환</b>되며 일반 투어가 일찍 닫힐 수 있습니다. 개장 직후 바로 타세요.</div>
+      <div class="district" id="dist-uni">
+        <button type="button" aria-expanded="false" aria-controls="map-uni">
+          <div class="sh">유니버설 하루 공략 동선</div>
+          <div class="tags">
+            <span class="tag">스튜디오 투어</span><span class="tag">위저딩 월드</span><span class="tag">슈퍼 닌텐도</span><span class="tag">쥬라기 월드</span><span class="tag b">17시 퇴장 기준</span>
+          </div>
+          <div class="maphint"><span class="chev">▾</span>카드를 누르면 파크 내부 동선 약도가 열립니다</div>
+        </button>
+        <div class="mapwrap" id="map-uni">
+          <svg viewBox="0 0 640 440" role="img" aria-label="유니버설 스튜디오 내부 동선 약도">
+            <rect x="40" y="40" width="560" height="185" rx="26" fill="none" stroke="var(--map-road)" stroke-width="4"/>
+            <rect x="250" y="300" width="350" height="115" rx="22" fill="none" stroke="var(--map-road)" stroke-width="4"/>
+            <text x="58" y="70" class="mroad">UPPER LOT (입구층)</text>
+            <text x="268" y="330" class="mroad">LOWER LOT (아래층)</text>
+            <path d="M230,225 L260,255 L230,275 L262,300" fill="none" stroke="var(--map-road)" stroke-width="8" stroke-linecap="round"/>
+            <text x="118" y="272" class="msmall">스타웨이 에스컬레이터</text>
+            <path d="M85,150 Q150,110 210,120 Q330,140 470,130 M470,130 Q430,190 320,205 Q290,240 300,300 Q310,340 340,360 M340,360 Q430,390 520,360" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 10"/>
+            <g>
+              <circle cx="85" cy="150" r="11" fill="var(--accent)"/><text x="80" y="154" class="mnum">1</text>
+              <text x="60" y="185" class="mlabel">입구 → 스튜디오 투어</text>
+              <text x="60" y="202" class="msmall">09:15 · 오후 조기 전환 리스크</text>
+              <circle cx="470" cy="130" r="11" fill="var(--accent)"/><text x="465" y="134" class="mnum">2</text>
+              <text x="488" y="126" class="mlabel">위저딩 월드</text>
+              <text x="488" y="143" class="msmall">해리포터 성 · 버터비어</text>
+              <circle cx="340" cy="360" r="11" fill="var(--accent)"/><text x="335" y="364" class="mnum">3</text>
+              <text x="300" y="398" class="mlabel">슈퍼 닌텐도 월드</text>
+              <text x="300" y="415" class="msmall">마리오카트 · 파워업 밴드는 선택</text>
+              <circle cx="520" cy="360" r="11" fill="var(--accent)"/><text x="515" y="364" class="mnum">4</text>
+              <text x="540" y="356" class="mlabel">쥬라기</text>
+              <text x="540" y="373" class="msmall">월드</text>
+              <text x="58" y="92" class="msmall">심슨 · 워터월드 쇼는 남는 시간에</text>
+            </g>
+          </svg>
+          <div class="mapfoot">
+            <span class="cap">투어 → 상층 → 하층 순서가 동선 손실이 가장 적습니다</span>
+            <a class="gbtn" target="_blank" rel="noopener" href="https://www.universalstudioshollywood.com">공식 파크 지도·앱 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="t">11:00</div><div>
+      <div class="what">위저딩 월드 → 슈퍼 닌텐도 월드 → 쥬라기 월드</div>
+      <div class="desc">9월 평일이라 혼잡도가 낮습니다. <b>익스프레스 패스(+$180~280/인)는 생략</b> 가능. 오후 4시 이후 재탑승 여유가 없으니, 꼭 탈 기구는 오전~이른 오후에 끝내세요.</div>
+    </div></li>
+    <li><div class="t">16:30</div><div>
+      <div class="what">기념품 · 마무리</div>
+      <div class="desc">17시 전후로 주간 입장객 퇴장이 시작됩니다. HHN 입장 인파가 몰리기 전에 빠져나가는 게 핵심.</div>
+    </div></li>
+    <li><div class="t">17:10</div><div>
+      <div class="what">그리피스 천문대 이동</div>
+      <div class="desc">같은 북쪽 산자락이라 가깝습니다. 유니버설 픽업존은 시티워크 쪽이 잡기 쉽습니다.</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Universal+Studios+Hollywood&amp;destination=Griffith+Observatory&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$16~24</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">17:45</div><div>
+      <div class="what">그리피스 천문대 · 입장 무료</div>
+      <div class="desc"><b>일몰 약 18:45.</b> 『라라랜드』 플라네타리움 장면의 그곳. LA 분지 일몰 + <b>할리우드 사인 정면 뷰</b> + 야경까지. 수요일은 밤 10시까지 운영이라 여유롭습니다.</div>
+      <div class="district" id="dist-griffith">
+        <button type="button" aria-expanded="false" aria-controls="map-griffith">
+          <div class="sh">그리피스 일몰 → 하산 코스</div>
+          <div class="tags">
+            <span class="tag">사인 뷰 테라스</span><span class="tag">일몰 18:45</span><span class="tag b">그릭 시어터에서 우버</span><span class="tag b">로스 펠리즈 저녁</span>
+          </div>
+          <div class="maphint"><span class="chev">▾</span>카드를 누르면 하산 라인 약도가 열립니다</div>
+        </button>
+        <div class="mapwrap" id="map-griffith">
+          <svg viewBox="0 0 640 340" role="img" aria-label="그리피스 하산 코스 약도">
+            <path d="M40,250 Q160,60 330,55 Q480,55 600,240" fill="none" stroke="var(--map-road)" stroke-width="4"/>
+            <text x="60" y="120" class="mroad">GRIFFITH PARK 언덕</text>
+            <text x="36" y="70" class="msmall">← 서쪽 능선 너머 HOLLYWOOD 사인</text>
+            <path d="M330,80 Q360,150 400,200 Q420,230 435,250" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 10"/>
+            <path d="M435,250 Q470,275 500,295" fill="none" stroke="var(--sea)" stroke-width="5" stroke-linecap="round"/>
+            <g>
+              <circle cx="330" cy="80" r="11" fill="var(--accent)"/><text x="325" y="84" class="mnum">1</text>
+              <text x="350" y="76" class="mlabel">천문대 — 일몰 · 야경</text>
+              <text x="350" y="93" class="msmall">서쪽 테라스 = 사인 정면 뷰</text>
+              <circle cx="435" cy="250" r="11" fill="var(--accent)"/><text x="430" y="254" class="mnum">2</text>
+              <text x="452" y="242" class="mlabel">그릭 시어터 — 우버 호출</text>
+              <text x="452" y="259" class="msmall">도보 하산 20~25분 · 내리막</text>
+              <circle cx="500" cy="295" r="11" fill="var(--sea)"/><text x="495" y="299" class="mnum">3</text>
+              <text x="516" y="300" class="mlabel">로스 펠리즈 저녁</text>
+              <text x="40" y="322" class="msmall">천문대 정문에서 바로 부르면 할증 + 20~30분 대기 — 하산 후 호출이 정답</text>
+            </g>
+          </svg>
+          <div class="mapfoot">
+            <span class="cap">하산 트레일은 포장길 · 일몰 후에도 안전한 구간</span>
+            <a class="gbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Griffith+Observatory&amp;destination=Greek+Theatre%2C+Los+Angeles&amp;travelmode=walking">구글 지도로 하산 경로 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="t">20:00</div><div>
+      <div class="what">하산 → 로스 펠리즈 저녁</div>
+      <div class="desc">일몰 직후엔 천문대 앞 우버가 20~30분씩 안 잡힙니다. <b>그릭 시어터까지 걸어 내려와</b> 호출하세요.</div>
+      <a class="move walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Griffith+Observatory&amp;destination=Greek+Theatre%2C+Los+Angeles&amp;travelmode=walking"><span class="ico">🚶</span>그릭 시어터까지 하산<span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Greek+Theatre%2C+Los+Angeles&amp;destination=Los+Feliz+Village%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 10분 · <span class="cost">$10~14</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">22:00</div><div>
+      <div class="what">호텔 복귀</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Los+Feliz+Village%2C+Los+Angeles&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 20분 · <span class="cost">$15~22</span><span class="go">경로 ↗</span></a>
+    </div></li>
+  </ul>
+  <div class="note"><b>HHN 조기 마감이 오히려 이득이 된 날.</b> 17시 퇴장 → 17:45 그리피스 도착 → 18:45 일몰이 정확히 맞물립니다. 테마파크 뒤라 피곤하면 야경은 생략하고 일몰만 보고 19:30에 내려와도 충분합니다.</div>
+</section>
+
+<!-- DAY 3 -->
+<section class="day" id="d3">
+  <div class="dayhead">
+    <span class="daynum">DAY 3</span>
+    <span class="daydate">9/24 목</span>
+    <span class="daytitle">슈프림 드랍 데이 · 페어팩스 & 멜로즈 쇼핑</span>
+  </div>
+  <p class="lead">목요일은 슈프림 <b>드랍 데이</b>입니다. 이날은 쇼핑에 온전히 씁니다 — 뒤에 고정 일정이 없어 줄이 길어져도 쫓기지 않습니다.</p>
+  <ul class="tl">
+    <li><div class="t">09:45</div><div>
+      <div class="what">페어팩스 이동</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Canter%27s+Deli%2C+419+N+Fairfax+Ave%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 15~20분 · <span class="cost">$14~20</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">10:15</div><div>
+      <div class="what">Canter's Deli — 브런치</div>
+      <div class="desc">419 N Fairfax Ave · 24시간 영업. <b>Supreme LA(439 N Fairfax)가 바로 옆집</b>입니다. 먹으면서 드랍 대기 상황을 볼 수 있어요.</div>
+    </div></li>
+    <li><div class="t">11:00</div><div>
+      <div class="what">Supreme 드랍 — 줄 서기</div>
+      <div class="desc">드랍은 보통 <b>목요일 오전 11시(PT)</b>. 인기 아이템 주간이면 개점 전부터 줄이 생깁니다. 매장 큐 방식(선착순/사전등록)은 <b>전날 인스타그램에서 확인</b>하세요.</div>
+      <div class="move walk"><span class="ico">🚶</span>옆집 · 도보 1분</div>
+    </div></li>
+    <li><div class="t">12:30</div><div>
+      <div class="what">페어팩스 스트릿웨어 거리</div>
+      <div class="desc">Fairfax Ave의 Melrose~Beverly 약 1km 구간을 걸어서 훑습니다.</div>
+      <div class="move walk"><span class="ico">🚶</span>도보 · <span class="cost">무료</span></div>
+      <div class="district" id="dist-fairfax">
+        <button type="button" aria-expanded="false" aria-controls="map-fairfax">
+          <div class="sh">Fairfax Ave</div>
+          <div class="tags">
+            <span class="tag">Supreme</span><span class="tag">Stüssy</span><span class="tag">Undefeated</span>
+            <span class="tag">Bape</span><span class="tag">Golf Wang</span><span class="tag">Diamond Supply</span>
+          </div>
+          <div class="sh" style="margin-top:14px">Melrose Ave — 도보 15분</div>
+          <div class="tags">
+            <span class="tag b">Flight Club</span><span class="tag b">Round Two</span><span class="tag b">Union LA</span>
+          </div>
+          <div class="maphint"><span class="chev">▾</span>카드를 누르면 도보 라인 약도가 열립니다</div>
+        </button>
+        <div class="mapwrap" id="map-fairfax">
+          <svg viewBox="0 0 640 430" role="img" aria-label="페어팩스-멜로즈 도보 코스 약도">
+            <line x1="185" y1="30" x2="185" y2="405" stroke="var(--map-road)" stroke-width="14"/>
+            <line x1="30" y1="80" x2="615" y2="80" stroke="var(--map-road)" stroke-width="14"/>
+            <line x1="30" y1="370" x2="615" y2="370" stroke="var(--map-road)" stroke-width="14"/>
+            <line x1="545" y1="30" x2="545" y2="405" stroke="var(--map-road)" stroke-width="14"/>
+            <text x="196" y="345" class="mroad" transform="rotate(-90 196 345)">FAIRFAX AVE</text>
+            <text x="330" y="70" class="mroad">MELROSE AVE</text>
+            <text x="330" y="396" class="mroad">BEVERLY BLVD</text>
+            <text x="556" y="340" class="mroad" transform="rotate(-90 556 340)">LA BREA AVE</text>
+            <path d="M185,330 L185,80 L545,80 L545,175" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 10"/>
+            <g>
+              <circle cx="185" cy="330" r="11" fill="var(--accent)"/><text x="180" y="334" class="mnum">1</text>
+              <text x="205" y="335" class="mlabel">Canter's Deli</text>
+              <circle cx="185" cy="292" r="11" fill="var(--accent)"/><text x="180" y="296" class="mnum">2</text>
+              <text x="205" y="297" class="mlabel">Supreme · 드랍 줄</text>
+              <circle cx="185" cy="210" r="11" fill="var(--accent)"/><text x="180" y="214" class="mnum">3</text>
+              <text x="205" y="206" class="mlabel">Stüssy · Bape · Golf Wang</text>
+              <text x="205" y="223" class="msmall">북쪽으로 올라가며 순서대로</text>
+              <circle cx="185" cy="80" r="11" fill="var(--accent)"/><text x="180" y="84" class="mnum">4</text>
+              <text x="70" y="48" class="mlabel">멜로즈에서 우회전</text>
+              <circle cx="360" cy="80" r="11" fill="var(--accent)"/><text x="355" y="84" class="mnum">5</text>
+              <text x="316" y="115" class="mlabel">Flight Club · Round Two</text>
+              <circle cx="545" cy="175" r="11" fill="var(--accent)"/><text x="540" y="179" class="mnum">6</text>
+              <text x="422" y="205" class="mlabel">Union LA (라브레아)</text>
+            </g>
+          </svg>
+          <div class="mapfoot">
+            <span class="cap">총 도보 약 2.5km · 매장 구경 포함 3~4시간</span>
+            <a class="gbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Canter%27s+Deli%2C+Los+Angeles&amp;destination=Union+LA&amp;waypoints=Supreme+Los+Angeles%7CFairfax+Ave+%26+Melrose+Ave%2C+Los+Angeles%7CRound+Two+Hollywood&amp;travelmode=walking">구글 지도로 이 코스 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="t">15:00</div><div>
+      <div class="what">멜로즈 애비뉴 — Flight Club · Round Two · Union LA</div>
+      <div class="desc">리셀·빈티지·편집숍 라인. 시간과 체력이 남는 만큼 보세요.</div>
+      <div class="move walk"><span class="ico">🚶</span>도보 15분</div>
+    </div></li>
+    <li><div class="t">17:30</div><div>
+      <div class="what">저녁 — 멜로즈 / 웨스트 할리우드</div>
+      <div class="desc">쇼핑 마친 지점 근처에서 자유롭게. 급할 것 없는 저녁입니다.</div>
+    </div></li>
+    <li><div class="t">19:30</div><div>
+      <div class="what">호텔 복귀</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Melrose+Ave+%26+Fairfax+Ave%2C+Los+Angeles&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 15~20분 · <span class="cost">$14~20</span><span class="go">경로 ↗</span></a>
+    </div></li>
+  </ul>
+  <div class="note"><b>드랍 데이 주의:</b> 화요일 쇼핑이던 v1과 달리 이날은 <b>줄이 있는 날</b>입니다. 드랍 아이템이 목표면 개점(11시) 전 도착, 구경이 목표면 오후 2시 이후가 한산합니다. 매장별 영업시간은 인스타그램에서 당일 확인.</div>
+</section>
+
+<!-- DAY 4 -->
+<section class="day" id="d4">
+  <div class="dayhead">
+    <span class="daynum">DAY 4</span>
+    <span class="daydate">9/25 금</span>
+    <span class="daytitle">사인 포토 · 더 게티 · 베니스 → 산타모니카</span>
+  </div>
+  <p class="lead">아침 <b>레이크 할리우드 파크</b>에서 할리우드 사인 근접샷 → 산 위 미술관 → 해변으로 이어지는 하루. 해변은 <b>베니스에서 시작해 산타모니카로 북상</b>하고, 일몰은 산타모니카 피어에서 봅니다.</p>
+  <ul class="tl">
+    <li><div class="t">08:45</div><div>
+      <div class="what">레이크 할리우드 파크 이동</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Lake+Hollywood+Park&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$18~26</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">09:10</div><div>
+      <div class="what">레이크 할리우드 파크 — 할리우드 사인 포토</div>
+      <div class="desc">그리피스보다 사인이 <b>훨씬 크고 가림 없이</b> 잡히는 대표 포토 스팟. 잔디밭이라 아침 산책 분위기도 좋습니다. <b>아침이 순광</b>이라 사진 타이밍도 지금이 최적. 30분이면 충분합니다.</div>
+      <div class="move walk"><span class="ico">📷</span>무료 · 공원</div>
+    </div></li>
+    <li><div class="t">09:40</div><div>
+      <div class="what">더 게티 이동</div>
+      <div class="desc">할리우드 힐스를 서쪽으로 가로질러 갑니다.</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Lake+Hollywood+Park&amp;destination=The+Getty+Center%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 25~35분 · <span class="cost">$26~38</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">10:20</div><div>
+      <div class="what">더 게티 센터 — 입장 무료</div>
+      <div class="desc">입구에서 <b>무인 트램</b>으로 산을 올라갑니다. 반 고흐 「아이리스」·렘브란트·모네, 중앙 정원, LA~태평양 전망까지. 하이라이트 기준 <b>2~2.5시간</b>. 금요일 정상 개관(월요일만 휴관).</div>
+      <div class="move"><span class="ico">🎟</span>입장 무료</div>
+      <div class="district" id="dist-getty">
+        <button type="button" aria-expanded="false" aria-controls="map-getty">
+          <div class="sh">게티 하이라이트 관람 동선</div>
+          <div class="tags">
+            <span class="tag b">무인 트램</span><span class="tag">반 고흐 「아이리스」</span><span class="tag">중앙 정원</span><span class="tag">전망 테라스</span>
+          </div>
+          <div class="maphint"><span class="chev">▾</span>카드를 누르면 관람 라인 약도가 열립니다</div>
+        </button>
+        <div class="mapwrap" id="map-getty">
+          <svg viewBox="0 0 640 380" role="img" aria-label="게티 센터 관람 동선 약도">
+            <path d="M60,330 L250,150" fill="none" stroke="var(--map-road)" stroke-width="8" stroke-linecap="round"/>
+            <text x="88" y="256" class="mroad" transform="rotate(-43 88 256)">TRAM 5분</text>
+            <rect x="250" y="60" width="350" height="230" rx="26" fill="none" stroke="var(--map-road)" stroke-width="4"/>
+            <text x="268" y="88" class="mroad">언덕 위 캠퍼스</text>
+            <path d="M250,150 Q300,130 340,130 Q420,120 470,140 Q470,200 430,235 Q380,265 330,255" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 10"/>
+            <g>
+              <circle cx="60" cy="330" r="11" fill="var(--accent)"/><text x="55" y="334" class="mnum">1</text>
+              <text x="80" y="336" class="mlabel">우버 하차 · 트램 탑승</text>
+              <circle cx="250" cy="150" r="11" fill="var(--accent)"/><text x="245" y="154" class="mnum">2</text>
+              <text x="196" y="122" class="mlabel">도착 플라자 · 로톤다</text>
+              <text x="196" y="139" class="msmall">안내지도 픽업</text>
+              <circle cx="470" cy="140" r="11" fill="var(--accent)"/><text x="465" y="144" class="mnum">3</text>
+              <text x="488" y="136" class="mlabel">서관 회화 전시</text>
+              <text x="488" y="153" class="msmall">「아이리스」 · 렘브란트 · 모네</text>
+              <circle cx="430" cy="235" r="11" fill="var(--accent)"/><text x="425" y="239" class="mnum">4</text>
+              <text x="448" y="248" class="mlabel">중앙 정원</text>
+              <circle cx="330" cy="255" r="11" fill="var(--accent)"/><text x="325" y="259" class="mnum">5</text>
+              <text x="238" y="288" class="mlabel">남쪽 전망 테라스</text>
+              <text x="238" y="305" class="msmall">LA 분지 ~ 맑은 날 태평양까지</text>
+              <text x="60" y="366" class="msmall">내려올 때도 같은 트램 · 짐 검사 있으니 가방은 가볍게</text>
+            </g>
+          </svg>
+          <div class="mapfoot">
+            <span class="cap">하이라이트 기준 2~2.5시간 · 전관 관람은 반나절+</span>
+            <a class="gbtn" target="_blank" rel="noopener" href="https://www.getty.edu">공식 사이트·관내 지도 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="t">12:45</div><div>
+      <div class="what">베니스 이동</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+Getty+Center%2C+Los+Angeles&amp;destination=Abbot+Kinney+Blvd%2C+Venice&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$18~26</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">13:15</div><div>
+      <div class="what">점심 — 애벗 키니</div>
+      <div class="desc">편집숍·카페 거리에서 점심과 구경을 같이. 맛집 밀도는 이 동네가 해변 중 최고입니다.</div>
+      <div class="move walk"><span class="ico">🚶</span>도보</div>
+    </div></li>
+    <li><div class="t">14:30</div><div>
+      <div class="what">베니스 운하 · 보드워크 산책</div>
+      <div class="desc">애벗 키니에서 운하까지 도보 10분, 운하에서 해변 보드워크로 나갑니다.</div>
+      <div class="move walk"><span class="ico">🚶</span>도보</div>
+    </div></li>
+    <li><div class="t">15:30</div><div>
+      <div class="what">공유 자전거로 산타모니카 북상</div>
+      <div class="desc">해변 자전거길(The Strand)을 따라 북쪽으로 약 25분. 편도라서 <b>앱 기반 공유 자전거·킥보드(Lime 등)</b>가 정답입니다 — 대여점 자전거는 원점 반납이라 안 맞아요.</div>
+      <div class="move"><span class="ico">🚲</span>공유 자전거 편도 · <span class="cost">$12~18/인</span></div>
+      <div class="district" id="dist-beach">
+        <button type="button" aria-expanded="false" aria-controls="map-beach">
+          <div class="sh">베니스 → 산타모니카 자전거 코스</div>
+          <div class="tags">
+            <span class="tag b">해변 자전거길</span><span class="tag b">베니스 보드워크</span><span class="tag">애벗 키니</span><span class="tag">베니스 운하</span>
+          </div>
+          <div class="maphint"><span class="chev">▾</span>카드를 누르면 라이딩 라인 약도가 열립니다</div>
+        </button>
+        <div class="mapwrap" id="map-beach">
+          <svg viewBox="0 0 640 430" role="img" aria-label="베니스-산타모니카 자전거 코스 약도">
+            <path d="M0,430 L0,120 Q60,140 110,190 Q170,250 240,300 Q330,360 430,395 Q520,420 640,430 Z" fill="var(--map-water)"/>
+            <text x="95" y="365" class="mroad" transform="rotate(33 95 365)">PACIFIC OCEAN</text>
+            <path d="M120,95 Q170,150 240,210 Q320,272 420,308 Q470,323 505,330" fill="none" stroke="var(--sea)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 10"/>
+            <path d="M505,330 Q540,300 565,255" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 10"/>
+            <g>
+              <circle cx="565" cy="255" r="11" fill="var(--accent)"/><text x="560" y="259" class="mnum">1</text>
+              <text x="470" y="220" class="mlabel">애벗 키니 · 베니스 운하</text>
+              <text x="470" y="237" class="msmall">점심 · 산책 후 출발점</text>
+              <circle cx="440" cy="313" r="11" fill="var(--sea)"/><text x="435" y="317" class="mnum">2</text>
+              <text x="392" y="352" class="mlabel">베니스 보드워크 — 자전거 픽업</text>
+              <circle cx="270" cy="232" r="11" fill="var(--sea)"/><text x="265" y="236" class="mnum">3</text>
+              <text x="290" y="226" class="mlabel">해변 자전거길 (The Strand)</text>
+              <text x="290" y="243" class="msmall">북쪽으로 약 25분 · 바다 옆으로 쭉</text>
+              <circle cx="120" cy="95" r="11" fill="var(--sea)"/><text x="115" y="99" class="mnum">4</text>
+              <text x="140" y="88" class="mlabel">산타모니카 피어 — 반납 · 일몰 대기</text>
+            </g>
+          </svg>
+          <div class="mapfoot">
+            <span class="cap">편도 약 5km 북상 · 공유 자전거는 산타모니카 쪽에 반납</span>
+            <a class="gbtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Abbot+Kinney+Blvd%2C+Venice&amp;destination=Santa+Monica+Pier&amp;waypoints=Venice+Canals%7CVenice+Beach+Boardwalk&amp;travelmode=bicycling">구글 지도로 이 코스 열기 ↗</a>
+          </div>
+        </div>
+      </div>
+    </div></li>
+    <li><div class="t">16:15</div><div>
+      <div class="what">서드 스트리트 프로미나드 쇼핑 · 휴식</div>
+      <div class="desc">일몰까지 여유 시간. 카페에서 쉬거나 쇼핑으로 채웁니다.</div>
+      <div class="move walk"><span class="ico">🚶</span>도보</div>
+    </div></li>
+    <li><div class="t">18:45</div><div>
+      <div class="what">산타모니카 피어 일몰</div>
+      <div class="move walk"><span class="ico">🚶</span>도보</div>
+    </div></li>
+    <li><div class="t">19:30</div><div>
+      <div class="what">저녁 후 호텔 복귀</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Santa+Monica+Pier&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 35~50분 · <span class="cost">$35~50</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">21:00</div><div>
+      <div class="what">짐 정리</div>
+      <div class="desc">다음 날 <b>6시 30분 체크아웃</b>입니다. 이날은 21시쯤 마무리하세요.</div>
+    </div></li>
+  </ul>
+  <div class="note"><b>레이크 할리우드 파크는 주택가 공원</b>이라 화장실·매점이 없습니다 — 물은 챙겨 가세요. <b>게티는 짐 검사가 있으니</b> 가방은 가볍게. 자전거 구간이 부담스러우면 베니스→산타모니카를 우버($10~14)로 대체해도 동선은 동일합니다.</div>
+</section>
+
+<!-- DAY 5 -->
+<section class="day" id="d5">
+  <div class="dayhead">
+    <span class="daynum">DAY 5</span>
+    <span class="daydate">9/26 토</span>
+    <span class="daytitle">출국</span>
+  </div>
+  <ul class="tl">
+    <li><div class="t">06:30</div><div><div class="what">체크아웃</div></div></li>
+    <li><div class="t">06:45</div><div>
+      <div class="what">LAX 이동</div>
+      <div class="desc">토요일 새벽이라 원활합니다.</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=LAX+Tom+Bradley+International+Terminal&amp;travelmode=driving"><span class="ico">🚗</span>우버 30분 · <span class="cost">$40~55</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li><div class="t">07:20</div><div>
+      <div class="what">터미널 B (TBIT) 도착</div>
+      <div class="desc">국제선 3시간 전 기준입니다.</div>
+    </div></li>
+    <li><div class="t">10:50</div><div><div class="what">출발</div></div></li>
+  </ul>
+</section>
+
+<!-- BUDGET -->
+<h2 class="sec" id="budget">총 비용</h2>
+<p class="lead">2인 합계 · 식비와 쇼핑 제외 · 게티 입장 무료</p>
+<div class="budget">
+  <div class="brow"><span class="bl">우버 전체 (14구간)</span><span class="bv">$305~440</span></div>
+  <div class="brow"><span class="bl">유니버설 입장권 (9/23)</span><span class="bv">$220~300</span></div>
+  <div class="brow"><span class="bl">빅버스 1일권 (Day 1)</span><span class="bv">$110~150</span></div>
+  <div class="brow"><span class="bl">공유 자전거 편도 (Day 4)</span><span class="bv">$25~35</span></div>
+  <div class="brow total"><span class="bl">합계</span><span class="bv">$660~925</span></div>
+  <div class="brow alt"><span class="bl">빅버스를 뺄 경우</span><span class="bv">$550~775</span></div>
+  <div class="brow alt"><span class="bl">Day 2 아침을 메트로로 대체 시</span><span class="bv">−$20~30</span></div>
+</div>
+<div class="note">
+  <b>우버와 Lyft를 매번 둘 다 열어 비교하세요.</b> 같은 구간에서 30~40% 차이 나는 경우가 흔합니다.<br><br>
+  <b>할증이 확실한 3구간:</b> 공항 픽업 · 유니버설 퇴장 직후(17시, HHN 입장 인파와 겹침) · 그리피스 일몰 직후. 이 셋은 예산을 넉넉히 잡으세요.
+</div>
+
+<!-- CHECKLIST -->
+<h2 class="sec" id="check">출발 전 체크리스트</h2>
+<ul class="check">
+  <li><input type="checkbox" id="c1" checked><span><span class="ct">HHN 개최 여부 확인 — 완료</span><span class="cs">9/23(수)~9/26(토) 전일 개최 확정 · 주간 파크 ~17시 마감 전제로 일정 반영됨</span></span></li>
+  <li><input type="checkbox" id="c2"><span><span class="ct">유니버설 9/23 날짜 지정 티켓 온라인 구매</span><span class="cs">주간권만 · 현장보다 저렴 · 결제 전 공식 캘린더에서 당일 운영시간 최종 확인</span></span></li>
+  <li><input type="checkbox" id="c3"><span><span class="ct">Park's BBQ 9/22 저녁 예약</span><span class="cs">평일에도 대기가 깁니다</span></span></li>
+  <li><input type="checkbox" id="c4"><span><span class="ct">빅버스 티켓 구매 (9/22 사용)</span><span class="cs">현재 노선도·첫차/막차 시간 확인 — 15시 전 탑승 필요</span></span></li>
+  <li><input type="checkbox" id="c5"><span><span class="ct">슈프림 9/24 드랍 정보 · 큐 방식 확인</span><span class="cs">전날 인스타그램 — 선착순인지 사전등록인지</span></span></li>
+  <li><input type="checkbox" id="c6"><span><span class="ct">페어팩스·멜로즈 매장별 영업시간 확인</span><span class="cs">각 매장 인스타그램</span></span></li>
+  <li><input type="checkbox" id="c7"><span><span class="ct">우버 / Lyft 앱 설치 및 결제수단 등록</span><span class="cs">출국 전에 미리</span></span></li>
+  <li><input type="checkbox" id="c8"><span><span class="ct">메트로 이용 시 TAP 카드 준비 (역 발매기)</span><span class="cs">태그 필수 — 무임승차 벌금 $75~250</span></span></li>
+  <li><input type="checkbox" id="c9"><span><span class="ct">공유 자전거·킥보드 앱 설치 (Lime 등)</span><span class="cs">Day 4 베니스→산타모니카 편도 라이딩용</span></span></li>
+</ul>
+
+<footer>
+  v7 · 2026-09-19 (v6 + Day 4에 레이크 할리우드 파크 사인 포토 추가 · 해변 순서를 베니스 → 산타모니카로 반전, 공유 자전거 편도로 변경)<br>
+  운영시간·요금·노선은 변경될 수 있습니다. 출발 직전 공식 사이트에서 한 번 더 확인하세요.<br>
+  약도는 축척 없는 개념도입니다 · 🚗 칩과 코스 버튼은 구글 지도로 연결됩니다.
+</footer>
+
+</div>
+<script>
+(function(){
+  try{
+    document.querySelectorAll('.check input').forEach(function(box){
+      var k='la-trip-v7-'+box.id;
+      try{
+        var v=localStorage.getItem(k);
+        if(v==='1') box.checked=true;
+        else if(v==='0') box.checked=false;
+      }catch(e){}
+      box.addEventListener('change',function(){
+        try{ localStorage.setItem(k, box.checked?'1':'0'); }catch(e){}
+      });
+    });
+  }catch(e){}
+  document.querySelectorAll('.check li').forEach(function(li){
+    li.addEventListener('click',function(e){
+      if(e.target.tagName!=='INPUT'){
+        var b=li.querySelector('input');
+        b.checked=!b.checked;
+        b.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+  document.querySelectorAll('.district > button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var d=btn.parentElement;
+      var open=d.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open?'true':'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>
