@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LA 여행 일정 v10</title>
+<title>LA 여행 일정 v11</title>
 <style>
 :root{
   --bg:#fbf7f2; --surface:#ffffff; --surface-2:#f4ede4;
@@ -161,7 +161,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 <div class="wrap">
 
 <header>
-  <p class="eyebrow">Los Angeles · 4박 5일 · v10</p>
+  <p class="eyebrow">Los Angeles · 4박 5일 · v11</p>
   <h1>LA 여행 일정</h1>
   <p class="sub">2026년 9월 22일(화) — 9월 26일(토) · 숙소 The LINE Hotel, Koreatown (3515 Wilshire Blvd)</p>
   <div class="flights">
@@ -841,6 +841,11 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 <!-- CHECKLIST -->
 <h2 class="sec" id="check">출발 전 체크리스트</h2>
 <ul class="check">
+  <li><input type="checkbox" id="c10"><span><span class="ct">환전 · 결제 수단 준비</span><span class="cs">팁·노점용 소액 현금($1·5·20권 섞어서) + 해외결제 카드 — 우버·매장은 대부분 카드</span></span></li>
+  <li><input type="checkbox" id="c11"><span><span class="ct">ESTA 승인서 캡처</span><span class="cs">여권과 정보 일치 확인 · 오프라인에서도 열리게 사진첩에 저장</span></span></li>
+  <li><input type="checkbox" id="c12"><span><span class="ct">아고다 숙소 예약 확인서 캡처</span><span class="cs">The LINE Hotel · 체크인 시 제시용 (예약번호 보이게)</span></span></li>
+  <li><input type="checkbox" id="c13"><span><span class="ct">유니버설 티켓 캡처 (구매 후)</span><span class="cs">QR 바코드가 선명하게 · 2인분 각자 폰에 저장</span></span></li>
+  <li><input type="checkbox" id="c14"><span><span class="ct">이심(eSIM) 준비</span><span class="cs">출국 전 구매·설치까지 완료, 활성화는 LA 도착 후 — 우버 호출에 데이터 필수</span></span></li>
   <li><input type="checkbox" id="c1" checked><span><span class="ct">HHN 개최 여부 확인 — 완료</span><span class="cs">9/23(수)~9/26(토) 전일 개최 확정 · 주간 파크 ~17시 마감 전제로 일정 반영됨</span></span></li>
   <li><input type="checkbox" id="c2"><span><span class="ct">유니버설 9/23 날짜 지정 티켓 온라인 구매</span><span class="cs">주간권만 · 현장보다 저렴 · 결제 전 공식 캘린더에서 당일 운영시간 최종 확인</span></span></li>
   <li><input type="checkbox" id="c3"><span><span class="ct">Park's BBQ 9/22 저녁 예약</span><span class="cs">평일에도 대기가 깁니다</span></span></li>
@@ -853,7 +858,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 </ul>
 
 <footer>
-  v10 · 2026-09-19 (v9 + 전 이동 구간에 Uber·Lyft 실시간 요금 딥링크 버튼 추가 — 출발·도착 자동 입력)<br>
+  v11 · 2026-09-19 (v10 + 체크리스트 상단에 환전·ESTA·아고다·유니버설 티켓 캡처·이심 5개 항목 추가)<br>
   운영시간·요금·노선은 변경될 수 있습니다. 출발 직전 공식 사이트에서 한 번 더 확인하세요.<br>
   약도는 축척 없는 개념도입니다 · 🚗 칩과 코스 버튼은 구글 지도로 연결됩니다.
 </footer>
@@ -863,7 +868,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 (function(){
   try{
     document.querySelectorAll('.check input').forEach(function(box){
-      var k='la-trip-v10-'+box.id;
+      var k='la-trip-v11-'+box.id;
       try{
         var v=localStorage.getItem(k);
         if(v==='1') box.checked=true;
@@ -891,13 +896,13 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     pa.classList.toggle('on',m==='A'); pb.classList.toggle('on',m==='B');
     pa.setAttribute('aria-pressed',m==='A'?'true':'false');
     pb.setAttribute('aria-pressed',m==='B'?'true':'false');
-    try{ localStorage.setItem('la-trip-v10-d1mode',m); }catch(e){}
+    try{ localStorage.setItem('la-trip-v11-d1mode',m); }catch(e){}
   }
   if(pa&&pb){
     pa.addEventListener('click',function(){setMode('A');});
     pb.addEventListener('click',function(){setMode('B');});
     var m='A';
-    try{ var sv=localStorage.getItem('la-trip-v10-d1mode'); if(sv==='B') m='B'; }catch(e){}
+    try{ var sv=localStorage.getItem('la-trip-v11-d1mode'); if(sv==='B') m='B'; }catch(e){}
     setMode(m);
   }
   document.querySelectorAll('.district > button').forEach(function(btn){
