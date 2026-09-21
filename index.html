@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LA 여행 일정 v8</title>
+<title>LA 여행 일정 v9</title>
 <style>
 :root{
   --bg:#fbf7f2; --surface:#ffffff; --surface-2:#f4ede4;
@@ -123,6 +123,16 @@ a.move:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .mroad{font-size:11px;font-weight:700;fill:var(--ink-3);letter-spacing:.06em}
 .mnum{font-size:11px;font-weight:800;fill:#fff}
 .msmall{font-size:11px;font-weight:600;fill:var(--ink-2)}
+.modepick{display:flex;gap:8px;margin:16px 0 0}
+.modepick button{flex:1;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;
+  padding:11px 13px;font-weight:800;font-size:14px;color:var(--ink-2);cursor:pointer;text-align:left;
+  font-family:inherit;box-shadow:var(--shadow)}
+.modepick button small{display:block;font-weight:600;font-size:12px;color:var(--ink-3);margin-top:3px}
+.modepick button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.modepick button.on small{color:var(--accent)}
+.modepick button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+#d1.optA .mode-b{display:none!important}
+#d1.optB .mode-a{display:none!important}
 .budget{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
 .brow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 17px;border-bottom:1px solid var(--line);font-size:15px}
 .brow:last-child{border-bottom:none}
@@ -150,7 +160,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 <div class="wrap">
 
 <header>
-  <p class="eyebrow">Los Angeles · 4박 5일 · v8</p>
+  <p class="eyebrow">Los Angeles · 4박 5일 · v9</p>
   <h1>LA 여행 일정</h1>
   <p class="sub">2026년 9월 22일(화) — 9월 26일(토) · 숙소 The LINE Hotel, Koreatown (3515 Wilshire Blvd)</p>
   <div class="flights">
@@ -222,13 +232,17 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 </div>
 
 <!-- DAY 1 -->
-<section class="day" id="d1">
+<section class="day optA" id="d1">
   <div class="dayhead">
     <span class="daynum">DAY 1</span>
     <span class="daydate">9/22 화</span>
     <span class="daytitle">도착 · 할리우드 · 빅버스 (로데오 → 어반 라이트 → 그로브)</span>
   </div>
-  <p class="lead">시차로 가장 피곤한 날이라 <b>앉아서 도는 빅버스</b>를 첫날에 배치했습니다. 걷는 양이 가장 적은 날입니다.</p>
+  <p class="lead">동선은 동일하고(할리우드 → 로데오 → 어반 라이트 → 그로브), <b>이동 방식만 A/B로 고릅니다.</b> 아래 버튼을 누르면 타임라인의 이동 칩이 바뀝니다.</p>
+  <div class="modepick" role="group" aria-label="Day 1 이동 방식 선택">
+    <button type="button" id="pickA" class="on" aria-pressed="true">후보 A · 빅버스 투어<small>2인 $110~150 · 2층 오픈탑 시티투어 경험</small></button>
+    <button type="button" id="pickB" aria-pressed="false">후보 B · 우버<small>2인 $24~34 · 대기 없이 빠르고 유연</small></button>
+  </div>
   <ul class="tl">
     <li><div class="t">08:20</div><div>
       <div class="what">LAX 터미널 B 도착</div>
@@ -285,7 +299,12 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
         </div>
       </div>
     </div></li>
-    <li><div class="t">13:30</div><div>
+    <li class="mode-b"><div class="t">13:30</div><div>
+      <div class="what">로데오 드라이브 이동</div>
+      <div class="desc">우버는 선셋 스트립을 경유하지 않으니, 원하면 기사에게 Sunset Blvd 경유를 요청해도 됩니다(+5분 남짓).</div>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=TCL+Chinese+Theatre&amp;destination=Beverly+Gardens+Park&amp;travelmode=driving"><span class="ico">🚗</span>우버 15분 · <span class="cost">$14~20</span><span class="go">경로 ↗</span></a>
+    </div></li>
+    <li class="mode-a"><div class="t">13:30</div><div>
       <div class="what">빅버스 승차 → 선셋 스트립 경유</div>
       <div class="desc">2층 오픈탑에 앉아서 도는 구성이라 시차 피로에 최적입니다. 2번 정류장(TCL 차이니즈 앞)에서 탑니다.</div>
       <div class="move"><span class="ico">🚌</span>1일권 · <span class="cost">$55~75/인</span></div>
@@ -339,8 +358,8 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
       </div>
     </div></li>
     <li><div class="t">14:15</div><div>
-      <div class="what">로데오 드라이브 하차 · 베벌리힐스 산책</div>
-      <div class="move"><span class="ico">🚌</span>빅버스 · <span class="cost">포함</span></div>
+      <div class="what">로데오 드라이브 · 베벌리힐스 산책</div>
+      <div class="move mode-a"><span class="ico">🚌</span>빅버스 · <span class="cost">포함</span></div>
       <div class="district" id="dist-rodeo">
         <button type="button" aria-expanded="false" aria-controls="map-rodeo">
           <div class="sh">베벌리힐스 도보 코스</div>
@@ -379,9 +398,10 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
       </div>
     </div></li>
     <li><div class="t">15:15</div><div>
-      <div class="what">빅버스 8번 정류장 하차 — 어반 라이트 + 라 브레아 타르 피츠</div>
-      <div class="desc">LACMA 앞 <b>가로등 202개 조형물</b> — LA 인증샷 1순위, 야외 무료. 바로 옆 <b>타르 피츠 공원</b>에서 아직도 부글거리는 천연 타르 늪 구경 (박물관 내부는 화요일 휴관이지만 야외 공원은 상시 개방). 30~40분이면 충분합니다.</div>
-      <div class="move"><span class="ico">🚌</span>빅버스 · <span class="cost">포함</span></div>
+      <div class="what">어반 라이트 + 라 브레아 타르 피츠</div>
+      <div class="desc">LACMA 앞 <b>가로등 202개 조형물</b> — LA 인증샷 1순위, 야외 무료. 바로 옆 <b>타르 피츠 공원</b>에서 아직도 부글거리는 천연 타르 늪 구경 (박물관 내부는 화요일 휴관이지만 야외 공원은 상시 개방). 30~40분이면 충분합니다. 후보 A는 빅버스 8번 정류장에서 하차합니다.</div>
+      <div class="move mode-a"><span class="ico">🚌</span>빅버스 · <span class="cost">포함</span></div>
+      <a class="move mode-b" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Beverly+Gardens+Park&amp;destination=Urban+Light+LACMA&amp;travelmode=driving"><span class="ico">🚗</span>우버 8~10분 · <span class="cost">$10~14</span><span class="go">경로 ↗</span></a>
     </div></li>
     <li><div class="t">16:10</div><div>
       <div class="what">더 그로브로 도보 이동</div>
@@ -403,7 +423,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
       <a class="move walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Park%27s+BBQ%2C+955+S+Vermont+Ave%2C+Los+Angeles&amp;travelmode=walking"><span class="ico">🚶</span>호텔 도보권<span class="go">경로 ↗</span></a>
     </div></li>
   </ul>
-  <div class="note"><b>비행이 지연되면</b> 할리우드 도보(12:00)를 건너뛰고 바로 빅버스에 타세요. 그래도 빠듯하면 어반 라이트 하차를 생략하면 됩니다 — 빅버스가 8번 정류장을 지나가며 2층에서도 보입니다. 참고로 어반 라이트는 <b>해 진 후 불 켜진 모습이 더 유명</b>하니, 낮 사진이 아쉬우면 Day 3 쇼핑 후 저녁에 우버로 잠깐(+$10~15) 다시 올 수도 있습니다. <b>밤 10시까지 버티면</b> 시차 적응이 훨씬 빨라집니다.</div>
+  <div class="note"><b>비행이 지연되면</b> 할리우드 도보(12:00)를 건너뛰고 바로 빅버스에 타세요(후보 A 기준 — 후보 B 우버는 지연 영향이 더 적습니다). 그래도 빠듯하면 어반 라이트 하차를 생략하면 됩니다 — 빅버스가 8번 정류장을 지나가며 2층에서도 보입니다. 참고로 어반 라이트는 <b>해 진 후 불 켜진 모습이 더 유명</b>하니, 낮 사진이 아쉬우면 Day 3 쇼핑 후 저녁에 우버로 잠깐(+$10~15) 다시 올 수도 있습니다. <b>밤 10시까지 버티면</b> 시차 적응이 훨씬 빨라집니다.</div>
 </section>
 
 <!-- DAY 2 -->
@@ -806,10 +826,10 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 <div class="budget">
   <div class="brow"><span class="bl">우버 전체 (14구간, 트레이더 조 경유 포함)</span><span class="bv">$295~425</span></div>
   <div class="brow"><span class="bl">유니버설 입장권 (9/23)</span><span class="bv">$220~300</span></div>
-  <div class="brow"><span class="bl">빅버스 1일권 (Day 1)</span><span class="bv">$110~150</span></div>
+  <div class="brow"><span class="bl">Day 1 후보 A 선택 시 — 빅버스 1일권</span><span class="bv">$110~150</span></div>
   <div class="brow"><span class="bl">공유 자전거 편도 (Day 4)</span><span class="bv">$25~35</span></div>
-  <div class="brow total"><span class="bl">합계</span><span class="bv">$650~910</span></div>
-  <div class="brow alt"><span class="bl">빅버스를 뺄 경우</span><span class="bv">$540~760</span></div>
+  <div class="brow total"><span class="bl">합계 (후보 A 기준)</span><span class="bv">$650~910</span></div>
+  <div class="brow alt"><span class="bl">Day 1 후보 B(우버 $24~34) 선택 시 합계</span><span class="bv">$565~795</span></div>
   <div class="brow alt"><span class="bl">Day 2·3 아침을 메트로로 대체 시</span><span class="bv">−$30~45</span></div>
 </div>
 <div class="note">
@@ -823,7 +843,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
   <li><input type="checkbox" id="c1" checked><span><span class="ct">HHN 개최 여부 확인 — 완료</span><span class="cs">9/23(수)~9/26(토) 전일 개최 확정 · 주간 파크 ~17시 마감 전제로 일정 반영됨</span></span></li>
   <li><input type="checkbox" id="c2"><span><span class="ct">유니버설 9/23 날짜 지정 티켓 온라인 구매</span><span class="cs">주간권만 · 현장보다 저렴 · 결제 전 공식 캘린더에서 당일 운영시간 최종 확인</span></span></li>
   <li><input type="checkbox" id="c3"><span><span class="ct">Park's BBQ 9/22 저녁 예약</span><span class="cs">평일에도 대기가 깁니다</span></span></li>
-  <li><input type="checkbox" id="c4"><span><span class="ct">빅버스 티켓 구매 (9/22 사용)</span><span class="cs">현재 노선도·첫차/막차 시간 확인 — 15시 전 탑승 필요</span></span></li>
+  <li><input type="checkbox" id="c4"><span><span class="ct">Day 1 이동 방식 결정 — 후보 A면 빅버스 티켓 구매</span><span class="cs">A: 노선도·첫차/막차 확인(15시 전 탑승) · B: 결정만 하면 준비물 없음</span></span></li>
   <li><input type="checkbox" id="c5"><span><span class="ct">슈프림 9/24 드랍 정보 · 큐 방식 확인</span><span class="cs">전날 인스타그램 — 선착순인지 사전등록인지</span></span></li>
   <li><input type="checkbox" id="c6"><span><span class="ct">페어팩스·멜로즈 매장별 영업시간 확인</span><span class="cs">각 매장 인스타그램</span></span></li>
   <li><input type="checkbox" id="c7"><span><span class="ct">우버 / Lyft 앱 설치 및 결제수단 등록</span><span class="cs">출국 전에 미리</span></span></li>
@@ -832,7 +852,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 </ul>
 
 <footer>
-  v8 · 2026-09-19 (v7 + Day 3: 페어팩스 D선+217번 메트로 칩 병기, 쇼핑 후 트레이더 조 A/B 경유 추가 · Day 2: 로스 펠리즈 제외, 그리피스에서 숙소 직행)<br>
+  v9 · 2026-09-19 (v8 + Day 1 이동 방식을 후보 A 빅버스 / 후보 B 우버 토글 버튼으로 — B 선택 시 구간별 우버 요금 표시)<br>
   운영시간·요금·노선은 변경될 수 있습니다. 출발 직전 공식 사이트에서 한 번 더 확인하세요.<br>
   약도는 축척 없는 개념도입니다 · 🚗 칩과 코스 버튼은 구글 지도로 연결됩니다.
 </footer>
@@ -842,7 +862,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 (function(){
   try{
     document.querySelectorAll('.check input').forEach(function(box){
-      var k='la-trip-v8-'+box.id;
+      var k='la-trip-v9-'+box.id;
       try{
         var v=localStorage.getItem(k);
         if(v==='1') box.checked=true;
@@ -862,6 +882,23 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
       }
     });
   });
+  var d1=document.getElementById('d1'),pa=document.getElementById('pickA'),pb=document.getElementById('pickB');
+  function setMode(m){
+    if(!d1||!pa||!pb) return;
+    d1.classList.toggle('optA',m==='A');
+    d1.classList.toggle('optB',m==='B');
+    pa.classList.toggle('on',m==='A'); pb.classList.toggle('on',m==='B');
+    pa.setAttribute('aria-pressed',m==='A'?'true':'false');
+    pb.setAttribute('aria-pressed',m==='B'?'true':'false');
+    try{ localStorage.setItem('la-trip-v9-d1mode',m); }catch(e){}
+  }
+  if(pa&&pb){
+    pa.addEventListener('click',function(){setMode('A');});
+    pb.addEventListener('click',function(){setMode('B');});
+    var m='A';
+    try{ var sv=localStorage.getItem('la-trip-v9-d1mode'); if(sv==='B') m='B'; }catch(e){}
+    setMode(m);
+  }
   document.querySelectorAll('.district > button').forEach(function(btn){
     btn.addEventListener('click',function(){
       var d=btn.parentElement;
