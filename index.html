@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LA 여행 일정 v9</title>
+<title>LA 여행 일정 v10</title>
 <style>
 :root{
   --bg:#fbf7f2; --surface:#ffffff; --surface-2:#f4ede4;
@@ -91,6 +91,7 @@ section.day{margin-top:34px;scroll-margin-top:64px}
 .move .ico{font-size:14px;line-height:1}
 .move .cost{color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
 .move.walk{background:transparent;border-style:dashed}
+a.move.rt{padding:5px 10px;font-size:12px;background:var(--sea-soft);border-color:var(--sea);color:var(--sea);font-weight:800}
 a.move{cursor:pointer}
 a.move .go{font-size:11.5px;font-weight:800;color:var(--sea);border-left:1px solid var(--line-2);padding-left:8px;margin-left:2px;white-space:nowrap}
 a.move:hover,a.move:focus-visible{border-color:var(--sea);background:var(--sea-soft)}
@@ -160,7 +161,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 <div class="wrap">
 
 <header>
-  <p class="eyebrow">Los Angeles · 4박 5일 · v9</p>
+  <p class="eyebrow">Los Angeles · 4박 5일 · v10</p>
   <h1>LA 여행 일정</h1>
   <p class="sub">2026년 9월 22일(화) — 9월 26일(토) · 숙소 The LINE Hotel, Koreatown (3515 Wilshire Blvd)</p>
   <div class="flights">
@@ -190,7 +191,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 <!-- OVERVIEW SKETCH MAP -->
 <div class="ovmap">
   <h3>전체 동선 약도</h3>
-  <p class="hint">축척 없는 개념도입니다. 별(★)이 숙소, 선 색이 날짜입니다. 아래 일정의 🚗 칩을 누르면 해당 구간이 입력된 구글 지도가 열립니다.</p>
+  <p class="hint">축척 없는 개념도입니다. 별(★)이 숙소, 선 색이 날짜입니다. 아래 일정의 🚗 칩은 구글 지도 경로를, <b>Uber·Lyft 실시간 버튼</b>은 출발·도착이 입력된 승차 앱을 열어 그 시점의 실제 요금을 보여줍니다. 둘 다 열어 비교하고 싼 쪽을 타세요.</p>
   <svg viewBox="0 0 700 540" role="img" aria-label="LA 전체 동선 개념도">
     <path d="M0,540 L0,300 Q60,270 95,300 Q120,330 120,370 Q125,430 170,470 Q210,500 210,540 Z" fill="var(--map-water)"/>
     <text x="34" y="470" class="mroad" transform="rotate(-64 34 470)">PACIFIC OCEAN</text>
@@ -251,11 +252,11 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li><div class="t">10:30</div><div>
       <div class="what">The LINE 호텔 · 짐 보관</div>
       <div class="desc">체크인은 15시부터. 프런트에 짐 맡기고 바로 나갑니다.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=LAX+Tom+Bradley+International+Terminal&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 30~40분 · <span class="cost">$45~60</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=LAX+Tom+Bradley+International+Terminal&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 30~40분 · <span class="cost">$45~60</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=33.9416&amp;pickup[longitude]=-118.4085&amp;pickup[nickname]=LAX%20Terminal%20B%20%28TBIT%29&amp;dropoff[latitude]=34.0617&amp;dropoff[longitude]=-118.3009&amp;dropoff[nickname]=The%20LINE%20Hotel%20LA"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=33.9416&amp;pickup[longitude]=-118.4085&amp;destination[latitude]=34.0617&amp;destination[longitude]=-118.3009"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">11:30</div><div>
       <div class="what">할리우드 이동</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=TCL+Chinese+Theatre&amp;travelmode=driving"><span class="ico">🚗</span>우버 20분 · <span class="cost">$16~24</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=TCL+Chinese+Theatre&amp;travelmode=driving"><span class="ico">🚗</span>우버 20분 · <span class="cost">$16~24</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;pickup[nickname]=The%20LINE%20Hotel%20LA&amp;dropoff[latitude]=34.1022&amp;dropoff[longitude]=-118.341&amp;dropoff[nickname]=TCL%20Chinese%20Theatre"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;destination[latitude]=34.1022&amp;destination[longitude]=-118.341"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">12:00</div><div>
       <div class="what">명예의 거리 · TCL 차이니즈 · 점심</div>
@@ -302,7 +303,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li class="mode-b"><div class="t">13:30</div><div>
       <div class="what">로데오 드라이브 이동</div>
       <div class="desc">우버는 선셋 스트립을 경유하지 않으니, 원하면 기사에게 Sunset Blvd 경유를 요청해도 됩니다(+5분 남짓).</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=TCL+Chinese+Theatre&amp;destination=Beverly+Gardens+Park&amp;travelmode=driving"><span class="ico">🚗</span>우버 15분 · <span class="cost">$14~20</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=TCL+Chinese+Theatre&amp;destination=Beverly+Gardens+Park&amp;travelmode=driving"><span class="ico">🚗</span>우버 15분 · <span class="cost">$14~20</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.1022&amp;pickup[longitude]=-118.341&amp;pickup[nickname]=TCL%20Chinese%20Theatre&amp;dropoff[latitude]=34.0736&amp;dropoff[longitude]=-118.4004&amp;dropoff[nickname]=Beverly%20Gardens%20Park"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.1022&amp;pickup[longitude]=-118.341&amp;destination[latitude]=34.0736&amp;destination[longitude]=-118.4004"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li class="mode-a"><div class="t">13:30</div><div>
       <div class="what">빅버스 승차 → 선셋 스트립 경유</div>
@@ -401,7 +402,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
       <div class="what">어반 라이트 + 라 브레아 타르 피츠</div>
       <div class="desc">LACMA 앞 <b>가로등 202개 조형물</b> — LA 인증샷 1순위, 야외 무료. 바로 옆 <b>타르 피츠 공원</b>에서 아직도 부글거리는 천연 타르 늪 구경 (박물관 내부는 화요일 휴관이지만 야외 공원은 상시 개방). 30~40분이면 충분합니다. 후보 A는 빅버스 8번 정류장에서 하차합니다.</div>
       <div class="move mode-a"><span class="ico">🚌</span>빅버스 · <span class="cost">포함</span></div>
-      <a class="move mode-b" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Beverly+Gardens+Park&amp;destination=Urban+Light+LACMA&amp;travelmode=driving"><span class="ico">🚗</span>우버 8~10분 · <span class="cost">$10~14</span><span class="go">경로 ↗</span></a>
+      <a class="move mode-b" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Beverly+Gardens+Park&amp;destination=Urban+Light+LACMA&amp;travelmode=driving"><span class="ico">🚗</span>우버 8~10분 · <span class="cost">$10~14</span><span class="go">경로 ↗</span></a><a class="move rt mode-b" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0736&amp;pickup[longitude]=-118.4004&amp;pickup[nickname]=Beverly%20Gardens%20Park&amp;dropoff[latitude]=34.0639&amp;dropoff[longitude]=-118.3592&amp;dropoff[nickname]=Urban%20Light%20LACMA"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt mode-b" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0736&amp;pickup[longitude]=-118.4004&amp;destination[latitude]=34.0639&amp;destination[longitude]=-118.3592"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">16:10</div><div>
       <div class="what">더 그로브로 도보 이동</div>
@@ -415,7 +416,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li><div class="t">17:30</div><div>
       <div class="what">호텔 복귀 · 체크인 · 휴식</div>
       <div class="desc">그로브에서 코리아타운은 가깝습니다.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+Grove%2C+Los+Angeles&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 15분 · <span class="cost">$12~18</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+Grove%2C+Los+Angeles&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 15분 · <span class="cost">$12~18</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0721&amp;pickup[longitude]=-118.3574&amp;pickup[nickname]=The%20Grove&amp;dropoff[latitude]=34.0617&amp;dropoff[longitude]=-118.3009&amp;dropoff[nickname]=The%20LINE%20Hotel%20LA"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0721&amp;pickup[longitude]=-118.3574&amp;destination[latitude]=34.0617&amp;destination[longitude]=-118.3009"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">19:30</div><div>
       <div class="what">코리아타운 저녁 — Park's BBQ</div>
@@ -443,7 +444,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li><div class="t">08:15</div><div>
       <div class="what">유니버설 이동</div>
       <div class="desc">대안: 메트로 B선 → Universal City역 (1인 $1.75) — 아침 시간대는 안전합니다.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Universal+Studios+Hollywood&amp;travelmode=driving"><span class="ico">🚗</span>우버 25~35분 · <span class="cost">$22~32</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Universal+Studios+Hollywood&amp;travelmode=driving"><span class="ico">🚗</span>우버 25~35분 · <span class="cost">$22~32</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;pickup[nickname]=The%20LINE%20Hotel%20LA&amp;dropoff[latitude]=34.1381&amp;dropoff[longitude]=-118.3534&amp;dropoff[nickname]=Universal%20Studios%20Hollywood"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;destination[latitude]=34.1381&amp;destination[longitude]=-118.3534"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
       <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Universal+Studios+Hollywood&amp;travelmode=transit"><span class="ico">🚇</span>메트로 B선 · <span class="cost">$1.75/인</span><span class="go">경로 ↗</span></a>
     </div></li>
     <li><div class="t">09:00</div><div>
@@ -505,7 +506,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li><div class="t">17:10</div><div>
       <div class="what">그리피스 천문대 이동</div>
       <div class="desc">같은 북쪽 산자락이라 가깝습니다. 유니버설 픽업존은 시티워크 쪽이 잡기 쉽습니다.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Universal+Studios+Hollywood&amp;destination=Griffith+Observatory&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$16~24</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Universal+Studios+Hollywood&amp;destination=Griffith+Observatory&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$16~24</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.1381&amp;pickup[longitude]=-118.3534&amp;pickup[nickname]=Universal%20Studios%20Hollywood&amp;dropoff[latitude]=34.1184&amp;dropoff[longitude]=-118.3004&amp;dropoff[nickname]=Griffith%20Observatory"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.1381&amp;pickup[longitude]=-118.3534&amp;destination[latitude]=34.1184&amp;destination[longitude]=-118.3004"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">17:45</div><div>
       <div class="what">그리피스 천문대 · 입장 무료</div>
@@ -548,7 +549,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
       <div class="what">하산 → 숙소 직행</div>
       <div class="desc">일몰 직후엔 천문대 앞 우버가 20~30분씩 안 잡힙니다. <b>그릭 시어터까지 걸어 내려와</b> 호출하세요.</div>
       <a class="move walk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Griffith+Observatory&amp;destination=Greek+Theatre%2C+Los+Angeles&amp;travelmode=walking"><span class="ico">🚶</span>그릭 시어터까지 하산<span class="go">경로 ↗</span></a>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Greek+Theatre%2C+Los+Angeles&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 15~20분 · <span class="cost">$15~22</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Greek+Theatre%2C+Los+Angeles&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 15~20분 · <span class="cost">$15~22</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.1196&amp;pickup[longitude]=-118.2964&amp;pickup[nickname]=Greek%20Theatre&amp;dropoff[latitude]=34.0617&amp;dropoff[longitude]=-118.3009&amp;dropoff[nickname]=The%20LINE%20Hotel%20LA"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.1196&amp;pickup[longitude]=-118.2964&amp;destination[latitude]=34.0617&amp;destination[longitude]=-118.3009"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">21:00</div><div>
       <div class="what">코리아타운 늦은 저녁</div>
@@ -571,7 +572,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li><div class="t">09:45</div><div>
       <div class="what">페어팩스 이동</div>
       <div class="desc">메트로 대안: 올해 5월 개통한 <b>D선 연장</b>으로 호텔 앞 역에서 3정거장 → Wilshire/Fairfax역 → <b>217번 버스</b>로 Fairfax를 북상 (총 35~45분). 낮 시간이라 안전합니다.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Canter%27s+Deli%2C+419+N+Fairfax+Ave%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 15~20분 · <span class="cost">$14~20</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Canter%27s+Deli%2C+419+N+Fairfax+Ave%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 15~20분 · <span class="cost">$14~20</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;pickup[nickname]=The%20LINE%20Hotel%20LA&amp;dropoff[latitude]=34.0781&amp;dropoff[longitude]=-118.3615&amp;dropoff[nickname]=Canter%27s%20Deli"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;destination[latitude]=34.0781&amp;destination[longitude]=-118.3615"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
       <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Canter%27s+Deli%2C+419+N+Fairfax+Ave%2C+Los+Angeles&amp;travelmode=transit"><span class="ico">🚇</span>D선 + 217번 · <span class="cost">$1.75/인</span><span class="go">경로 ↗</span></a>
     </div></li>
     <li><div class="t">10:15</div><div>
@@ -646,14 +647,14 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li><div class="t">19:00</div><div>
       <div class="what">트레이더 조 — 기념품·장보기</div>
       <div class="desc">에코백·스낵 기념품의 성지. 두 후보 중 가까운 쪽으로: <b>A 라 브레아점</b>(3rd St & La Brea — 귀갓길 방향이라 동선상 유리), <b>B 웨스트 할리우드점</b>(Santa Monica Blvd — 멜로즈에서 북쪽). 보통 21시 마감이라 여유 있습니다.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Melrose+Ave+%26+Fairfax+Ave%2C+Los+Angeles&amp;destination=34.0691505%2C-118.3444162&amp;travelmode=driving"><span class="ico">🛒</span>후보 A · 우버 8~10분 · <span class="cost">$8~12</span><span class="go">경로 ↗</span></a>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Melrose+Ave+%26+Fairfax+Ave%2C+Los+Angeles&amp;destination=34.0905855%2C-118.3492106&amp;travelmode=driving"><span class="ico">🛒</span>후보 B · 우버 8~10분 · <span class="cost">$8~12</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Melrose+Ave+%26+Fairfax+Ave%2C+Los+Angeles&amp;destination=34.0691505%2C-118.3444162&amp;travelmode=driving"><span class="ico">🛒</span>후보 A · 우버 8~10분 · <span class="cost">$8~12</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0837&amp;pickup[longitude]=-118.3614&amp;pickup[nickname]=Melrose%20%26%20Fairfax&amp;dropoff[latitude]=34.0691505&amp;dropoff[longitude]=-118.3444162&amp;dropoff[nickname]=Trader%20Joe%27s%20La%20Brea"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0837&amp;pickup[longitude]=-118.3614&amp;destination[latitude]=34.0691505&amp;destination[longitude]=-118.3444162"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Melrose+Ave+%26+Fairfax+Ave%2C+Los+Angeles&amp;destination=34.0905855%2C-118.3492106&amp;travelmode=driving"><span class="ico">🛒</span>후보 B · 우버 8~10분 · <span class="cost">$8~12</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0837&amp;pickup[longitude]=-118.3614&amp;pickup[nickname]=Melrose%20%26%20Fairfax&amp;dropoff[latitude]=34.0905855&amp;dropoff[longitude]=-118.3492106&amp;dropoff[nickname]=Trader%20Joe%27s%20West%20Hollywood"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0837&amp;pickup[longitude]=-118.3614&amp;destination[latitude]=34.0905855&amp;destination[longitude]=-118.3492106"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">20:00</div><div>
       <div class="what">호텔 복귀</div>
       <div class="desc">어느 매장이든 Wilshire 방향 직선 귀갓길입니다. 들른 매장 기준 칩을 누르세요.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=34.0691505%2C-118.3444162&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>A에서 · 우버 10~12분 · <span class="cost">$10~14</span><span class="go">경로 ↗</span></a>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=34.0905855%2C-118.3492106&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>B에서 · 우버 12~15분 · <span class="cost">$12~18</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=34.0691505%2C-118.3444162&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>A에서 · 우버 10~12분 · <span class="cost">$10~14</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0691505&amp;pickup[longitude]=-118.3444162&amp;pickup[nickname]=Trader%20Joe%27s%20La%20Brea&amp;dropoff[latitude]=34.0617&amp;dropoff[longitude]=-118.3009&amp;dropoff[nickname]=The%20LINE%20Hotel%20LA"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0691505&amp;pickup[longitude]=-118.3444162&amp;destination[latitude]=34.0617&amp;destination[longitude]=-118.3009"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=34.0905855%2C-118.3492106&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>B에서 · 우버 12~15분 · <span class="cost">$12~18</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0905855&amp;pickup[longitude]=-118.3492106&amp;pickup[nickname]=Trader%20Joe%27s%20West%20Hollywood&amp;dropoff[latitude]=34.0617&amp;dropoff[longitude]=-118.3009&amp;dropoff[nickname]=The%20LINE%20Hotel%20LA"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0905855&amp;pickup[longitude]=-118.3492106&amp;destination[latitude]=34.0617&amp;destination[longitude]=-118.3009"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
   </ul>
   <div class="note"><b>드랍 데이 주의:</b> 화요일 쇼핑이던 v1과 달리 이날은 <b>줄이 있는 날</b>입니다. 드랍 아이템이 목표면 개점(11시) 전 도착, 구경이 목표면 오후 2시 이후가 한산합니다. 매장별 영업시간은 인스타그램에서 당일 확인.</div>
@@ -670,7 +671,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
   <ul class="tl">
     <li><div class="t">08:45</div><div>
       <div class="what">레이크 할리우드 파크 이동</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Lake+Hollywood+Park&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$18~26</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=Lake+Hollywood+Park&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$18~26</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;pickup[nickname]=The%20LINE%20Hotel%20LA&amp;dropoff[latitude]=34.1259&amp;dropoff[longitude]=-118.3324&amp;dropoff[nickname]=Lake%20Hollywood%20Park"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;destination[latitude]=34.1259&amp;destination[longitude]=-118.3324"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">09:10</div><div>
       <div class="what">레이크 할리우드 파크 — 할리우드 사인 포토</div>
@@ -680,7 +681,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li><div class="t">09:40</div><div>
       <div class="what">더 게티 이동</div>
       <div class="desc">할리우드 힐스를 서쪽으로 가로질러 갑니다.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Lake+Hollywood+Park&amp;destination=The+Getty+Center%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 25~35분 · <span class="cost">$26~38</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Lake+Hollywood+Park&amp;destination=The+Getty+Center%2C+Los+Angeles&amp;travelmode=driving"><span class="ico">🚗</span>우버 25~35분 · <span class="cost">$26~38</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.1259&amp;pickup[longitude]=-118.3324&amp;pickup[nickname]=Lake%20Hollywood%20Park&amp;dropoff[latitude]=34.078&amp;dropoff[longitude]=-118.4741&amp;dropoff[nickname]=Getty%20Center"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.1259&amp;pickup[longitude]=-118.3324&amp;destination[latitude]=34.078&amp;destination[longitude]=-118.4741"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">10:20</div><div>
       <div class="what">더 게티 센터 — 입장 무료</div>
@@ -727,7 +728,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     </div></li>
     <li><div class="t">12:45</div><div>
       <div class="what">베니스 이동</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+Getty+Center%2C+Los+Angeles&amp;destination=Abbot+Kinney+Blvd%2C+Venice&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$18~26</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+Getty+Center%2C+Los+Angeles&amp;destination=Abbot+Kinney+Blvd%2C+Venice&amp;travelmode=driving"><span class="ico">🚗</span>우버 20~25분 · <span class="cost">$18~26</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.078&amp;pickup[longitude]=-118.4741&amp;pickup[nickname]=Getty%20Center&amp;dropoff[latitude]=33.9905&amp;dropoff[longitude]=-118.4646&amp;dropoff[nickname]=Abbot%20Kinney%20Blvd"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.078&amp;pickup[longitude]=-118.4741&amp;destination[latitude]=33.9905&amp;destination[longitude]=-118.4646"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">13:15</div><div>
       <div class="what">점심 — 애벗 키니</div>
@@ -788,7 +789,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     </div></li>
     <li><div class="t">19:30</div><div>
       <div class="what">저녁 후 호텔 복귀</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Santa+Monica+Pier&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 35~50분 · <span class="cost">$35~50</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Santa+Monica+Pier&amp;destination=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;travelmode=driving"><span class="ico">🚗</span>우버 35~50분 · <span class="cost">$35~50</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0084&amp;pickup[longitude]=-118.4987&amp;pickup[nickname]=Santa%20Monica%20Pier&amp;dropoff[latitude]=34.0617&amp;dropoff[longitude]=-118.3009&amp;dropoff[nickname]=The%20LINE%20Hotel%20LA"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0084&amp;pickup[longitude]=-118.4987&amp;destination[latitude]=34.0617&amp;destination[longitude]=-118.3009"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">21:00</div><div>
       <div class="what">짐 정리</div>
@@ -810,7 +811,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     <li><div class="t">06:45</div><div>
       <div class="what">LAX 이동</div>
       <div class="desc">토요일 새벽이라 원활합니다.</div>
-      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=LAX+Tom+Bradley+International+Terminal&amp;travelmode=driving"><span class="ico">🚗</span>우버 30분 · <span class="cost">$40~55</span><span class="go">경로 ↗</span></a>
+      <a class="move" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=The+LINE+Hotel+LA%2C+3515+Wilshire+Blvd&amp;destination=LAX+Tom+Bradley+International+Terminal&amp;travelmode=driving"><span class="ico">🚗</span>우버 30분 · <span class="cost">$40~55</span><span class="go">경로 ↗</span></a><a class="move rt" target="_blank" rel="noopener" href="https://m.uber.com/ul/?action=setPickup&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;pickup[nickname]=The%20LINE%20Hotel%20LA&amp;dropoff[latitude]=33.9416&amp;dropoff[longitude]=-118.4085&amp;dropoff[nickname]=LAX%20Terminal%20B%20%28TBIT%29"><span class="ico">🚕</span>Uber 실시간 ↗</a><a class="move rt" target="_blank" rel="noopener" href="https://lyft.com/ride?id=lyft&amp;pickup[latitude]=34.0617&amp;pickup[longitude]=-118.3009&amp;destination[latitude]=33.9416&amp;destination[longitude]=-118.4085"><span class="ico">🚕</span>Lyft 실시간 ↗</a>
     </div></li>
     <li><div class="t">07:20</div><div>
       <div class="what">터미널 B (TBIT) 도착</div>
@@ -852,7 +853,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 </ul>
 
 <footer>
-  v9 · 2026-09-19 (v8 + Day 1 이동 방식을 후보 A 빅버스 / 후보 B 우버 토글 버튼으로 — B 선택 시 구간별 우버 요금 표시)<br>
+  v10 · 2026-09-19 (v9 + 전 이동 구간에 Uber·Lyft 실시간 요금 딥링크 버튼 추가 — 출발·도착 자동 입력)<br>
   운영시간·요금·노선은 변경될 수 있습니다. 출발 직전 공식 사이트에서 한 번 더 확인하세요.<br>
   약도는 축척 없는 개념도입니다 · 🚗 칩과 코스 버튼은 구글 지도로 연결됩니다.
 </footer>
@@ -862,7 +863,7 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
 (function(){
   try{
     document.querySelectorAll('.check input').forEach(function(box){
-      var k='la-trip-v9-'+box.id;
+      var k='la-trip-v10-'+box.id;
       try{
         var v=localStorage.getItem(k);
         if(v==='1') box.checked=true;
@@ -890,13 +891,13 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-si
     pa.classList.toggle('on',m==='A'); pb.classList.toggle('on',m==='B');
     pa.setAttribute('aria-pressed',m==='A'?'true':'false');
     pb.setAttribute('aria-pressed',m==='B'?'true':'false');
-    try{ localStorage.setItem('la-trip-v9-d1mode',m); }catch(e){}
+    try{ localStorage.setItem('la-trip-v10-d1mode',m); }catch(e){}
   }
   if(pa&&pb){
     pa.addEventListener('click',function(){setMode('A');});
     pb.addEventListener('click',function(){setMode('B');});
     var m='A';
-    try{ var sv=localStorage.getItem('la-trip-v9-d1mode'); if(sv==='B') m='B'; }catch(e){}
+    try{ var sv=localStorage.getItem('la-trip-v10-d1mode'); if(sv==='B') m='B'; }catch(e){}
     setMode(m);
   }
   document.querySelectorAll('.district > button').forEach(function(btn){
